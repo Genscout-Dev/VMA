@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="window" style={{ width: '800px', margin: '50px auto' }}>
       <div className="title-bar">
-        <div className="title-bar-text">ORBIS BWAA - Patient Management</div>
+        <div className="title-bar-text">VMA</div>
         <div className="title-bar-controls">
           <button aria-label="Minimize"></button>
           <button aria-label="Maximize"></button>
