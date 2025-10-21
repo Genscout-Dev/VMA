@@ -1,0 +1,40 @@
+/* Import 98.css */
+@import "98.css";
+
+/* Import Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom color overrides for green theme */
+:root {
+  /* Main surface colors - mint/sage green theme */
+  --surface: #c0d8c0;
+  --button-face: #c0d8c0;
+  --button-highlight: #dfe8df;
+  --button-shadow: #5a7a5a;
+  --window-frame: #0a5a0a;
+  --dialog-blue: #4a8a6a;
+  --dialog-blue-light: #6aaa8a;
+  --dialog-gray: #c0d8c0;
+  --dialog-gray-light: #d0e8d0;
+  
+  /* Additional greens */
+  --link-blue: #2a6a4a;
+  --text-color: #222;
+}
+
+/* Reset body to use our theme */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "MS Sans Serif", "Microsoft Sans Serif", sans-serif;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
