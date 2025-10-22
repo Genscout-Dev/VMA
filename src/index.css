@@ -1,34 +1,51 @@
-/* Import 98.css */
-@import "98.css";
-
 /* Import Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom color overrides for green theme */
+/* Import MS Sans Serif font from xp.css */
+@font-face {
+  font-family: 'MS Sans Serif';
+  src: url('/node_modules/xp.css/dist/ms_sans_serif.woff2') format('woff2'),
+       url('/node_modules/xp.css/dist/ms_sans_serif.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MS Sans Serif';
+  src: url('/node_modules/xp.css/dist/ms_sans_serif_bold.woff2') format('woff2'),
+       url('/node_modules/xp.css/dist/ms_sans_serif_bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
 :root {
-  /* Main surface colors - mint/sage green theme */
-  --surface: #c0d8c0;
-  --button-face: #c0d8c0;
-  --button-highlight: #dfe8df;
-  --button-shadow: #5a7a5a;
-  --window-frame: #0a5a0a;
-  --dialog-blue: #4a8a6a;
-  --dialog-blue-light: #6aaa8a;
-  --dialog-gray: #c0d8c0;
-  --dialog-gray-light: #d0e8d0;
+  /* Greens */
+  --green-light: #82c39b;
+  --green-dark: #4a8c6e;
   
-  /* Additional greens */
-  --link-blue: #2a6a4a;
-  --text-color: #222;
+  /* Neutrals */
+  --white: #ffffff;
+  --gray-light: #dfe8df;
+  --gray-medium: #c0c0c0;
+  --gray-dark: #808080;
+  --gray-darker: #5a7a5a;
+  
+  /* Accent */
+  --orange: #F5C7A0;
+  
+  /* 98.css compatibility */
+  --surface: var(--green-light);
+  --button-face: var(--green-light);
+  --button-highlight: var(--gray-light);
+  --button-shadow: var(--gray-darker);
 }
 
 /* Reset body to use our theme */
 body {
   margin: 0;
   padding: 0;
-  font-family: "MS Sans Serif", "Microsoft Sans Serif", sans-serif;
   background: var(--surface);
   overflow: hidden;
 }
@@ -36,5 +53,73 @@ body {
 #root {
   width: 100vw;
   height: 100vh;
+}
+
+.sidebar {
+  width: 178px;
+  min-width: 178px;
+  height: 100vh;
+  background-color: var(--green-light);
+  border-right: 15px solid var(--green-dark);
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+}
+
+.sidebar-section {
+  margin-bottom: 0px;
+}
+
+.section-header {
+  background-color: var(--green-dark);
+  color: var(--white);
+  padding: 2px 4px;
+  font-size: 11px;
+  font-weight: normal;
+  height: 15px;
+  line-height: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-content {
+  background-color: var(--green-light);
+  padding: 1px 0;
+}
+
+.section-content.scrollable {
+  max-height: 95px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-section.collapsed .section-content {
+  display: none;
+}
+
+.sidebar-item {
+  padding: 0px 4px;
+  height: 13px;
+  line-height: 13px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+
+.sidebar-item.bold {
+  font-weight: bold;
+}
+
+.sidebar-item.selected {
+  background-color: var(--orange);
+}
+
+.sidebar-item:hover:not(.selected) {
+  background-color: var(--green-light);
 }
 
