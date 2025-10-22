@@ -17,7 +17,6 @@ function App() {
           <div className="window-body" style={{ flex: 1, overflow: 'auto' }}>
             <h2>Main Content Area</h2>
             <p>This is where the main content would appear.</p>
-            <p>The sidebar on the left uses XP.css TreeView component.</p>
           </div>
         </div>
       </div>
