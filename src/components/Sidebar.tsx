@@ -9,7 +9,7 @@ export default function Sidebar() {
           <div className="subsection scrollable">
             <div className="sidebar-item bold">Patientendatenmanagement</div>
             <div className="sidebar-item bold">Ambulanz</div>
-            <div className="sidebar-item bold">Station</div>
+            <div className="sidebar-item bold selected">Station</div>
             <div className="sidebar-item bold">Funktionsbereich</div>
             <div className="sidebar-item bold">[Placeholder 1]</div>
             <div className="sidebar-item bold">[Placeholder 2]</div>
@@ -21,7 +21,7 @@ export default function Sidebar() {
           {/* Second subsection - Normal/thin items */}
           <div className="subsection scrollable">
             <div className="sidebar-item">Patientensuche</div>
-            <div className="sidebar-item">Stationsgrafik</div>
+            <div className="sidebar-item selected">Stationsgrafik</div>
             <div className="sidebar-item">Fallübersicht</div>
             <div className="sidebar-item">Arztbriefe Medizin</div>
             <div className="sidebar-item">Arbeitsliste Maßnahmen</div>
@@ -41,9 +41,6 @@ export default function Sidebar() {
             <div className="sidebar-item">Riemer, Herbert</div>
             <div className="sidebar-item">Reiber, Markus</div>
             <div className="sidebar-item selected">Waschinger, Renate</div>
-            <div className="sidebar-item">[Placeholder Patient 1]</div>
-            <div className="sidebar-item">[Placeholder Patient 2]</div>
-            <div className="sidebar-item">[Placeholder Patient 3]</div>
           </div>
           
           <div className="subsection-divider"></div>
@@ -61,7 +58,7 @@ export default function Sidebar() {
             <div className="sidebar-item">Abgeschlossene Akten</div>
             <div className="sidebar-item">Abteilung und Diagnosen</div>
             <div className="sidebar-item">E-Health Versandassistent</div>
-            <div className="sidebar-item">[MTS Notfallprotokoll Arzt]</div>
+            <div className="sidebar-item selected">[MTS Notfallprotokoll Arzt]</div>
           </div>
         </div>
       </div>
