@@ -1,0 +1,67 @@
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  height: 100vh;
+  background-color: var(--green-light);
+  border-right: 15px solid var(--green-dark);
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+}
+
+.sidebar-section {
+  margin-bottom: 0px;
+}
+
+.section-header {
+  background-color: var(--green-dark);
+  color: var(--white);
+  padding: 3px 4px;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-content {
+  background-color: var(--green-light);
+  padding: 0;
+}
+
+.sidebar-section.collapsed .section-content {
+  display: none;
+}
+
+.sidebar-item {
+  padding: 2px 4px;
+  line-height: 15px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+
+.sidebar-item.bold {
+  font-weight: bold;
+}
+
+.subsection-divider {
+  height: 3px;
+  background-color: var(--green-dark);
+  margin: 0px;
+}
+
+/* Section-specific selection colors */
+[data-section="overview"] .sidebar-item.selected {
+  background-color: var(--selection-gray);
+}
+
+[data-section="files"] .sidebar-item.selected {
+  background-color: var(--selection-orange);
+}
+

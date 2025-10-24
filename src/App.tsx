@@ -1,22 +1,24 @@
-import { useState } from 'react'
+import Sidebar from './components/Sidebar'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="window" style={{ width: '800px', margin: '50px auto' }}>
-      <div className="title-bar">
-        <div className="title-bar-text">VMA</div>
-        <div className="title-bar-controls">
-          <button aria-label="Minimize"></button>
-          <button aria-label="Maximize"></button>
-          <button aria-label="Close"></button>
+    <div style={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden', backgroundColor: 'var(--gray-medium)' }}>
+      <Sidebar />
+      <div style={{ flex: 1, padding: '8px', display: 'flex', flexDirection: 'column' }}>
+        <div className="window" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <div className="title-bar">
+            <div className="title-bar-text">ORBIS BWAA @ KHV04 - Arztbrief ACI BWAA</div>
+            <div className="title-bar-controls">
+              <button aria-label="Minimize"></button>
+              <button aria-label="Maximize"></button>
+              <button aria-label="Close"></button>
+            </div>
+          </div>
+          <div className="window-body" style={{ flex: 1, overflow: 'auto' }}>
+            <h2>Main Content Area</h2>
+            <p>This is where the main content would appear.</p>
+          </div>
         </div>
-      </div>
-      <div className="window-body">
-        <h1>Welcome to VMA</h1>
-        <p>This is a demo using 98.css with custom green theme.</p>
-        
       </div>
     </div>
   )
