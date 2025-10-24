@@ -17,12 +17,13 @@
 
 :root {
   /* Greens */
-  --green-light: #82c39b;
-  --green-dark: #4a8c6e;
+  --green-light: #81C39B;
+  --green-dark: #4B8C6D;
+  --green-toolbar: #B9DDC9;
   
   /* Neutrals */
   --white: #ffffff;
-  --gray-light: #dfe8df;
+  --gray-light: #EAEAEA;
   --gray-medium: #c0c0c0;
   --gray-dark: #808080;
   --gray-darker: #5a7a5a;
@@ -44,10 +45,33 @@ body {
   padding: 0;
   background: var(--surface);
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  line-height: 1.4;
 }
 
 #root {
   width: 100vw;
   height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-weight: normal;
+  margin: 0;
 }
 
