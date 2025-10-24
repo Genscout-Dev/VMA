@@ -12,7 +12,7 @@ export default function Sidebar() {
     <div className="sidebar">
       {/* Section 1 - Bereiche/Übersichten with 2 subsections */}
       <div className="sidebar-section" data-section="overview">
-        <div className="section-header">Bereiche/Übersichten</div>
+        {/* <div className="section-header">Bereiche/Übersichten</div> */}
         <div className="section-content">
           {/* First subsection - Bold items */}
           <ScrollableArea>
