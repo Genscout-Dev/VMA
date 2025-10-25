@@ -1,6 +1,9 @@
 import './index.css'
 import goPrevious from '../../assets/icons/go-previous-symbolic.png'
 import goNext from '../../assets/icons/go-next.png'
+import folderOpenIcon from '../../assets/icons/Folder Open.ico'
+import saveIcon from '../../assets/icons/166.ico'
+import documentsIcon from '../../assets/icons/emblem-documents.png'
 
 export default function Toolbar() {
   return (
@@ -28,10 +31,10 @@ export default function Toolbar() {
           <img src={goPrevious} alt="Previous" className="toolbar-icon" />
           <img src={goNext} alt="Next" className="toolbar-icon" />
           <div className="toolbar-divider"></div>
-          <img src="/src/assets/icons/Folder Open.ico" alt="Open" className="toolbar-icon" />
-          <img src="/src/assets/icons/166.ico" alt="Save" className="toolbar-icon" />
+          <img src={folderOpenIcon} alt="Open" className="toolbar-icon" />
+          <img src={saveIcon} alt="Save" className="toolbar-icon" />
           <div className="toolbar-divider"></div>
-          <img src="/src/assets/icons/emblem-documents.png" alt="Documents" className="toolbar-icon" />
+          <img src={documentsIcon} alt="Documents" className="toolbar-icon" />
         </div>
         
         <div className="toolbar-patient-info">
