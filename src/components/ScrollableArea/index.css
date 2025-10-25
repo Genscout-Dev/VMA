@@ -14,7 +14,7 @@
 }
 
 .scrollable-area::-webkit-scrollbar-track {
-  background: var(--green-light);
+  background: var(--green-lighter);
 }
 
 .scrollable-area::-webkit-scrollbar-thumb {
