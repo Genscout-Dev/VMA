@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 17 17" shape-rendering="crispEdges">
+<!-- Border -->
+<path stroke="#81C39B" d="M0 0h1M16 0h1M0 1h1M0 2h1M0 3h1M0 4h1M0 5h1M0 6h1M0 7h1M0 8h1M0 9h1M0 10h1M0 11h1M0 12h1M0 13h1M0 14h1M0 15h1M16 15h1M0 16h1M16 16h1" />
+<!-- Light background -->
+<path stroke="#B9DDC9" d="M1 0h15M1 1h1M15 1h1M1 2h1M15 2h1M1 3h1M15 3h1M1 4h1M15 4h1M1 5h1M15 5h1M1 6h1M15 6h1M1 7h1M15 7h1M1 8h1M15 8h1M1 9h1M15 9h1M1 10h1M15 10h1M1 11h1M15 11h1M1 12h1M15 12h1M1 13h1M15 13h1M1 14h1M15 14h1M2 15h13M1 16h15" />
+<!-- Lighter shades for button gradient -->
+<path stroke="#CAE5D7" d="M2 1h12M2 2h12M2 3h12M2 4h12M2 5h12M2 6h12M2 7h12M2 8h12M2 9h12M2 10h12M2 11h12M2 12h12M2 13h12M2 14h12" />
+<!-- Arrow icon in dark green -->
+<path stroke="#4B8C6D" d="M8 5h1M7 6h3M6 7h5M5 8h3M9 8h3M4 9h3M10 9h3M5 10h1M11 10h1" />
+<!-- Top border highlight -->
+<path stroke="#ffffff" d="M16 1h1M16 2h1M16 3h1M16 4h1M16 5h1M16 6h1M16 7h1M16 8h1M16 9h1M16 10h1M16 11h1M16 12h1M16 13h1M16 14h1" />
+<!-- Bottom shadow -->
+<path stroke="#70A585" d="M1 15h1M15 15h1M16 16h1" />
+</svg>
+
