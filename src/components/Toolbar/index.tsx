@@ -1,4 +1,6 @@
 import './index.css'
+import goPrevious from '../../assets/icons/go-previous-symbolic.png'
+import goNext from '../../assets/icons/go-next.png'
 
 export default function Toolbar() {
   return (
@@ -23,11 +25,11 @@ export default function Toolbar() {
       {/* Main Toolbar with Icons */}
       <div className="toolbar-main">
         <div className="toolbar-icons">
+          <img src={goPrevious} alt="Previous" className="toolbar-icon" />
+          <img src={goNext} alt="Next" className="toolbar-icon" />
+          <div className="toolbar-divider"></div>
           <img src="/src/assets/icons/Folder Open.ico" alt="Open" className="toolbar-icon" />
           <img src="/src/assets/icons/166.ico" alt="Save" className="toolbar-icon" />
-          <div className="toolbar-divider"></div>
-          <span className="toolbar-icon-text">◀</span>
-          <span className="toolbar-icon-text">▶</span>
           <div className="toolbar-divider"></div>
           <img src="/src/assets/icons/emblem-documents.png" alt="Documents" className="toolbar-icon" />
         </div>
