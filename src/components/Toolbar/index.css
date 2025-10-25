@@ -1,0 +1,100 @@
+.toolbar-container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid var(--gray-dark);
+}
+
+/* Top Logo Bar */
+.toolbar-logo-bar {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  background-color: var(--green-dark);
+  font-size: 11px;
+  color: var(--white);
+  padding-left: 4px;
+  border-bottom: 1px solid var(--gray-dark);
+}
+
+.toolbar-logo-text {
+  font-weight: bold;
+}
+
+/* Menu Bar */
+.toolbar-menu-bar {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  font-size: 11px;
+  color: #000000;
+  padding-left: 4px;
+  background-color: var(--green-light);
+}
+
+.toolbar-menu-items {
+  display: flex;
+  gap: 16px;
+}
+
+.toolbar-menu-item {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Main Toolbar with Icons */
+.toolbar-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 28px;
+  background-color: var(--green-toolbar);
+  padding-left: 4px;
+  padding-right: 8px;
+  border-top: 1px solid var(--gray-dark);
+}
+
+.toolbar-icons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.toolbar-icon {
+  width: 24px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.toolbar-icon-text {
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 16px;
+  background-color: var(--gray-dark);
+  margin: 0 4px;
+}
+
+.toolbar-patient-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 11px;
+  color: var(--gray-dark);
+}
+
+/* Secondary Toolbar / Breadcrumb */
+.toolbar-breadcrumb {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  background-color: var(--green-dark);
+  padding-left: 4px;
+  border-top: 1px solid var(--gray-dark);
+  font-size: 11px;
+  color: var(--white);
+}
+
