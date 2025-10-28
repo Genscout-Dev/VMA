@@ -1,5 +1,6 @@
 import Sidebar from './components/Sidebar'
 import Toolbar from './components/Toolbar'
+import MainContent from './components/MainContent'
 
 function App() {
   return (
@@ -9,10 +10,7 @@ function App() {
       {/* Main Content Area with Sidebar and Content */}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         <Sidebar />
-        <div style={{ flex: 1, padding: '8px', display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
-          <h2>Main Content Area</h2>
-          <p>This is where the main content would appear.</p>
-        </div>
+        <MainContent />
       </div>
     </div>
   )
