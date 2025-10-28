@@ -1,4 +1,4 @@
-/* Import MS Sans Serif font from xp.css */
+/* Import MS Sans Serif and Perfect DOS VGA font */
 @font-face {
   font-family: 'MS Sans Serif';
   src: url('/node_modules/xp.css/dist/ms_sans_serif.woff2') format('woff2'),
@@ -14,6 +14,8 @@
   font-weight: bold;
   font-style: normal;
 }
+
+@import url('https://unpkg.com/xp.css');
 
 :root {
   /* Greens */

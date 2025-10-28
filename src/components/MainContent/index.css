@@ -1,0 +1,309 @@
+.main-content-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #c0c0c0;
+  font-family: 'MS Sans Serif', sans-serif;
+}
+
+/* Main Tab Navigation */
+.main-tabs {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff 0%, #d4d4d4 100%);
+  border-bottom: 2px solid #808080;
+  height: 28px;
+  padding: 0 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.main-tab {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  background: #d4d4d4;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  border-bottom: none;
+  font-size: 11px;
+  cursor: pointer;
+  margin-right: 2px;
+  font-family: 'MS Sans Serif', sans-serif;
+  transition: background-color 0.1s;
+  position: relative;
+  top: 1px;
+  height: 26px;
+}
+
+.main-tab:hover:not(.active) {
+  background: #e0e0e0;
+}
+
+.main-tab.active {
+  background: #ffffff;
+  border-bottom: 2px solid #ffffff;
+  z-index: 10;
+  font-weight: bold;
+  top: 2px;
+  height: 28px;
+}
+
+.main-tab:active:not(.active) {
+  border-color: #808080 #ffffff #ffffff #808080;
+  background: #c0c0c0;
+}
+
+.tab-icon {
+  font-size: 14px;
+  display: inline-block;
+  line-height: 1;
+}
+
+.tab-filler {
+  flex: 1;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 8px;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.user-info {
+  color: #000080;
+  font-weight: bold;
+}
+
+.timestamp {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* Content Area */
+.content-area {
+  flex: 1;
+  overflow: hidden;
+  background: #ffffff;
+  border: 2px inset #808080;
+  margin: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* XP.css compatibility overrides */
+.main-content-container .window {
+  box-shadow: none;
+  margin: 0;
+}
+
+.main-content-container .window-body {
+  margin: 0;
+}
+
+/* Make sure nested windows don't have extra borders */
+.content-area .window {
+  border: none;
+  background: transparent;
+}
+
+/* Ensure proper font rendering */
+.main-content-container * {
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+}
+
+/* Button and input styling to match XP */
+.main-content-container button:not(.main-tab):not(.tab):not(.card-action):not(.inline-button):not(.filter-btn):not(.station-btn):not(.action-tab) {
+  padding: 4px 12px;
+  background: linear-gradient(to bottom, #ffffff 0%, #e3e3e3 100%);
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', sans-serif;
+  cursor: pointer;
+  min-width: 75px;
+  height: 23px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.main-content-container button:not(.main-tab):not(.tab):hover:not(.card-action):not(.inline-button):not(.filter-btn):not(.station-btn):not(.action-tab) {
+  background: linear-gradient(to bottom, #ffffff 0%, #f0f0f0 100%);
+}
+
+.main-content-container button:not(.main-tab):not(.tab):active:not(.card-action):not(.inline-button):not(.filter-btn):not(.station-btn):not(.action-tab) {
+  background: linear-gradient(to bottom, #e3e3e3 0%, #ffffff 100%);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Input styling */
+.main-content-container input[type="text"],
+.main-content-container input[type="number"],
+.main-content-container textarea {
+  border: 2px inset #d4d4d4;
+  padding: 2px 4px;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', sans-serif;
+  background: #ffffff;
+}
+
+.main-content-container input[type="text"]:focus,
+.main-content-container input[type="number"]:focus,
+.main-content-container textarea:focus {
+  outline: 1px dotted #000000;
+  outline-offset: -2px;
+}
+
+/* Checkbox and radio styling */
+.main-content-container input[type="checkbox"],
+.main-content-container input[type="radio"] {
+  width: 13px;
+  height: 13px;
+  margin: 0 4px 0 0;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* Select dropdown styling */
+.main-content-container select {
+  border: 2px inset #d4d4d4;
+  padding: 2px 4px;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', sans-serif;
+  background: #ffffff;
+  min-width: 100px;
+}
+
+/* Fieldset styling */
+.main-content-container fieldset {
+  border: 2px groove #d4d4d4;
+  padding: 8px;
+  margin: 8px 0;
+}
+
+.main-content-container legend {
+  padding: 0 4px;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', sans-serif;
+}
+
+/* Link styling */
+.main-content-container a {
+  color: #0000ee;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.main-content-container a:hover {
+  color: #0000cc;
+}
+
+.main-content-container a:visited {
+  color: #551a8b;
+}
+
+/* Table styling */
+.main-content-container table {
+  border-collapse: collapse;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', sans-serif;
+}
+
+.main-content-container th {
+  background: #d4d4d4;
+  border: 1px solid #808080;
+  padding: 4px 8px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.main-content-container td {
+  border: 1px solid #d0d0d0;
+  padding: 4px 8px;
+}
+
+/* Scrollbar styling for all child components */
+.main-content-container ::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.main-content-container ::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border: 1px solid #808080;
+}
+
+.main-content-container ::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  min-height: 16px;
+}
+
+.main-content-container ::-webkit-scrollbar-thumb:hover {
+  background: #b0b0b0;
+}
+
+.main-content-container ::-webkit-scrollbar-thumb:active {
+  background: #808080;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.main-content-container ::-webkit-scrollbar-button {
+  background: #d4d4d4;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  height: 16px;
+  width: 16px;
+  display: block;
+}
+
+.main-content-container ::-webkit-scrollbar-button:hover {
+  background: #b0b0b0;
+}
+
+.main-content-container ::-webkit-scrollbar-button:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+  background: #808080;
+}
+
+/* Scrollbar arrow buttons */
+.main-content-container ::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 6l-4 4h8z" fill="%23000000"/></svg>');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8px;
+}
+
+.main-content-container ::-webkit-scrollbar-button:vertical:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 10l4-4H4z" fill="%23000000"/></svg>');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8px;
+}
+
+.main-content-container ::-webkit-scrollbar-button:horizontal:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6 8l4-4v8z" fill="%23000000"/></svg>');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8px;
+}
+
+.main-content-container ::-webkit-scrollbar-button:horizontal:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10 8l-4 4v-8z" fill="%23000000"/></svg>');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 8px;
+}
+
+/* Corner where scrollbars meet */
+.main-content-container ::-webkit-scrollbar-corner {
+  background: #c0c0c0;
+}
