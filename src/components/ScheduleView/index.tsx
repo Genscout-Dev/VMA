@@ -1,4 +1,5 @@
 import React from 'react'
+import ScrollableArea from '../ScrollableArea'
 import './index.css'
 
 interface ScheduleSlot {
@@ -119,7 +120,7 @@ const ScheduleView: React.FC = () => {
   const detailsData = [
     {
       patient: 'OPUS_C_J_BULA',
-      gender: '♂',
+      gender: 'M',
       type: 'ggpl',
       status: 'verst.',
       kenzeichen: 'Pat.',
@@ -154,7 +155,7 @@ const ScheduleView: React.FC = () => {
         <button className="tab">Behandlerfilter Krankenhaus</button>
         <button className="tab">Zugewiesene Räume</button>
         <button className="tab-spacer"></button>
-        <button className="action-tab">🔄 Behandler zureisen</button>
+        <button className="action-tab">Behandler zureisen</button>
       </div>
 
       {/* Main Schedule Area */}
@@ -165,12 +166,12 @@ const ScheduleView: React.FC = () => {
             <div className="header-left">LOUNGE 54</div>
             <div className="header-right">
               <span className="room-label">54-328² ²</span>
-              <span className="filter-info">Gesamt ng. erledigte Nachrichten 📩</span>
+              <span className="filter-info">Gesamt ng. erledigte Nachrichten</span>
             </div>
           </div>
 
           {/* Schedule Grid */}
-          <div className="schedule-grid">
+          <ScrollableArea maxHeight="calc(100vh - 300px)">
             {Object.entries(scheduleSlots).map(([slotId, slots]) => (
               <div key={slotId} className="schedule-row">
                 <div className="slot-label">{slotId}</div>
@@ -182,12 +183,11 @@ const ScheduleView: React.FC = () => {
                     >
                       <div className="card-header">
                         <div className="location-info">
-                          <span className="location-marker">📍</span>
                           <span className="station-code">{slot.stationCode}</span>
                         </div>
-                        {slot.status === 'warning' && <span className="status-icon">⚠️</span>}
-                        {slot.status === 'alert' && <span className="status-icon">🚨</span>}
-                        {slot.status === 'info' && <span className="status-icon">ℹ️</span>}
+                        {slot.status === 'warning' && <span className="status-icon">!</span>}
+                        {slot.status === 'alert' && <span className="status-icon">!!</span>}
+                        {slot.status === 'info' && <span className="status-icon">i</span>}
                       </div>
                       <div className="card-body">
                         <div className="patient-name">
@@ -199,20 +199,20 @@ const ScheduleView: React.FC = () => {
                       </div>
                       <div className="card-footer">
                         <span className="time-slot">{slot.timeSlot}</span>
-                        <button className="card-action">📊</button>
-                        <button className="card-action">📝</button>
+                        <button className="card-action">...</button>
+                        <button className="card-action">+</button>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
             ))}
-          </div>
+          </ScrollableArea>
         </div>
 
         {/* Right Stats Panel */}
         <div className="stats-panel">
-          <div className="stats-header">Gesamt ng. erledigte Nachrichten 📩</div>
+          <div className="stats-header">Gesamt ng. erledigte Nachrichten</div>
           <div className="stats-content">
             <div className="stat-item">
               <label>Aktuelle Station</label>
@@ -296,12 +296,12 @@ const ScheduleView: React.FC = () => {
           <button className="tab">Termine</button>
           <button className="tab">Verlaufseintrag</button>
           <div className="tab-actions">
-            <button className="filter-btn">🔽 Filter</button>
+            <button className="filter-btn">Filter</button>
             <button className="station-btn">Station</button>
           </div>
         </div>
         
-        <div className="details-content">
+        <ScrollableArea maxHeight="120px">
           <table className="details-table">
             <thead>
               <tr>
@@ -317,7 +317,6 @@ const ScheduleView: React.FC = () => {
               {detailsData.map((row, index) => (
                 <tr key={index}>
                   <td>
-                    <span className="folder-icon">📁</span> 
                     <span className="patient-name">{row.patient}</span>
                   </td>
                   <td>{row.gender}</td>
@@ -332,7 +331,7 @@ const ScheduleView: React.FC = () => {
               ))}
             </tbody>
           </table>
-        </div>
+        </ScrollableArea>
       </div>
     </div>
   )

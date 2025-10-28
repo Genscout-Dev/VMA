@@ -16,14 +16,12 @@ const MainContent: React.FC = () => {
           className={`main-tab ${activeView === 'patient' ? 'active' : ''}`}
           onClick={() => setActiveView('patient')}
         >
-          <span className="tab-icon">📋</span>
           Patientendatenmanagement
         </button>
         <button 
           className={`main-tab ${activeView === 'schedule' ? 'active' : ''}`}
           onClick={() => setActiveView('schedule')}
         >
-          <span className="tab-icon">📅</span>
           Stationsübersicht
         </button>
         <div className="tab-filler"></div>

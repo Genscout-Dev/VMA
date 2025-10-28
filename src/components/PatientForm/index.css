@@ -1,12 +1,4 @@
-.patient-form-container {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 2px;
-  height: 100%;
-  overflow-y: auto;
-  background: #ece9d8;
-}
+/* Container styles moved to ScrollableArea component */
 
 /* Info Card Styles */
 .info-card {
@@ -184,15 +176,7 @@
   border-color: #808080 #ffffff #ffffff #808080;
 }
 
-.procedures-list {
-  margin-top: 6px;
-  border: 2px inset #808080;
-  background: #ffffff;
-  padding: 2px;
-  max-height: 100px;
-  overflow-y: auto;
-  box-shadow: inset 1px 1px 0 #404040;
-}
+/* ScrollableArea handles scrolling for procedures list */
 
 .procedures-table {
   width: 100%;
@@ -277,33 +261,4 @@
   color: #0000cc;
 }
 
-/* Scrollbar styling */
-.patient-form-container::-webkit-scrollbar {
-  width: 16px;
-}
-
-.patient-form-container::-webkit-scrollbar-track {
-  background: #c0c0c0;
-  border: 1px solid #808080;
-}
-
-.patient-form-container::-webkit-scrollbar-thumb {
-  background: #d4d4d4;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-}
-
-.patient-form-container::-webkit-scrollbar-thumb:active {
-  background: #808080;
-}
-
-.patient-form-container::-webkit-scrollbar-button {
-  background: #d4d4d4;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  height: 16px;
-}
-
-.patient-form-container::-webkit-scrollbar-button:active {
-  border-color: #808080 #ffffff #ffffff #808080;
-}
+/* Scrollbar styling handled by ScrollableArea component */

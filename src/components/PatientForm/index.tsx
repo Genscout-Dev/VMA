@@ -1,9 +1,10 @@
 import React from 'react'
+import ScrollableArea from '../ScrollableArea'
 import './index.css'
 
 const PatientForm: React.FC = () => {
   return (
-    <div className="patient-form-container">
+    <ScrollableArea maxHeight="calc(100vh - 60px)">
       {/* Top Info Card */}
       <div className="window info-card">
         <div className="window-body">
@@ -87,11 +88,11 @@ const PatientForm: React.FC = () => {
                 <span>Laufnummer anzeigen</span>
               </label>
               
-              <button type="button" className="inline-button">⬆️</button>
-              <button type="button" className="inline-button">⬇️</button>
-              <button type="button" className="inline-button">🗑️ Markierte Zeile Löschen</button>
+              <button type="button" className="inline-button">↑</button>
+              <button type="button" className="inline-button">↓</button>
+              <button type="button" className="inline-button">Markierte Zeile Löschen</button>
 
-              <div className="procedures-list">
+              <ScrollableArea maxHeight="100px">
                 <table className="procedures-table">
                   <tbody>
                     <tr>
@@ -111,7 +112,7 @@ const PatientForm: React.FC = () => {
                     </tr>
                   </tbody>
                 </table>
-              </div>
+              </ScrollableArea>
             </div>
 
             <div className="bottom-sections">
@@ -165,7 +166,7 @@ const PatientForm: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ScrollableArea>
   )
 }
 

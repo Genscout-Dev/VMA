@@ -117,11 +117,10 @@
 }
 
 /* Schedule Grid */
+/* Schedule grid scrolling handled by ScrollableArea */
 .schedule-grid {
-  flex: 1;
   padding: 8px;
   background: #f8f8f8;
-  overflow-y: auto;
 }
 
 .schedule-row {
@@ -391,9 +390,8 @@
 }
 
 /* Details Content */
+/* Details content scrolling handled by ScrollableArea */
 .details-content {
-  flex: 1;
-  overflow: auto;
   padding: 8px;
 }
 
@@ -449,39 +447,4 @@
   font-style: italic;
 }
 
-/* Scrollbar styling */
-.schedule-grid::-webkit-scrollbar,
-.details-content::-webkit-scrollbar {
-  width: 16px;
-}
-
-.schedule-grid::-webkit-scrollbar-track,
-.details-content::-webkit-scrollbar-track {
-  background: #c0c0c0;
-  border: 1px solid #808080;
-}
-
-.schedule-grid::-webkit-scrollbar-thumb,
-.details-content::-webkit-scrollbar-thumb {
-  background: #d4d4d4;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-}
-
-.schedule-grid::-webkit-scrollbar-thumb:active,
-.details-content::-webkit-scrollbar-thumb:active {
-  background: #808080;
-}
-
-.schedule-grid::-webkit-scrollbar-button,
-.details-content::-webkit-scrollbar-button {
-  background: #d4d4d4;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  height: 16px;
-}
-
-.schedule-grid::-webkit-scrollbar-button:active,
-.details-content::-webkit-scrollbar-button:active {
-  border-color: #808080 #ffffff #ffffff #808080;
-}
+/* Scrollbar styling handled by ScrollableArea component */
