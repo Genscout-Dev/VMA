@@ -11,10 +11,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* Fix: Ensure no gaps between child elements */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .sidebar-section {
-  margin-bottom: 0px;
+  /* Fix: Ensure no gaps between sections */
+  margin: 0;
+  padding: 0;
+  /* Set background to match sidebar to prevent gray bleed-through */
+  background-color: var(--green-light);
+  /* Fix: Use flexbox to eliminate gaps between header and content */
+  display: flex;
+  flex-direction: column;
 }
 
 .section-header {
@@ -28,11 +39,24 @@
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Fix: Ensure no margins that could cause gaps */
+  margin: 0;
+  /* Remove any potential borders */
+  border: none;
+  /* Ensure headers connect seamlessly */
+  display: block;
 }
 
 .section-content {
   background-color: var(--green-light);
   padding: 0;
+  /* Fix: Reset margin and ensure proper line-height */
+  margin: 0;
+  line-height: normal;
+  /* Fix: Ensure no extra space from children */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .sidebar-section.collapsed .section-content {
@@ -50,6 +74,9 @@
   font-size: 11px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Fix: Ensure no margin on items */
+  margin: 0;
+  display: block;
 }
 
 .sidebar-item.bold {

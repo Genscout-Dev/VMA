@@ -3,6 +3,28 @@
   display: block;
   overflow-y: auto;
   overflow-x: hidden;
+  /* Fix: Reset padding and margin to prevent inheritance from xp.css or browser defaults */
+  padding: 0;
+  margin: 0;
+}
+
+/* Ensure child elements maintain proper line-height */
+.scrollable-area > * {
+  line-height: normal;
+  /* Fix: Remove any margin from first and last children */
+  margin: 0;
+}
+
+/* Fix: Ensure first child has no top margin/padding */
+.scrollable-area > *:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Fix: Ensure last child has no bottom margin/padding */
+.scrollable-area > *:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .scrollable-area::-webkit-scrollbar {

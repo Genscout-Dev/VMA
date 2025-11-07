@@ -4,7 +4,7 @@ import MainContent from './components/MainContent'
 
 function App() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100vw', overflow: 'hidden', backgroundColor: 'var(--gray-medium)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100vw', overflow: 'hidden', backgroundColor: 'var(--green-light)' }}>
       <Toolbar />
 
       {/* Main Content Area with Sidebar and Content */}
