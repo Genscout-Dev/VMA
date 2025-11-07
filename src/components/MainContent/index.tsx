@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import PatientForm from '../PatientForm'
-import StationOverview from '../StationScheduleView'
+import StationOverview from '../StationOverview'
 import OrganizationalUnits from '../OrganizationalUnits'
 import './index.css'
 
 type ViewType = 'patient' | 'schedule' | 'organizational'
 
 const MainContent: React.FC = () => {
-  const [activeView, setActiveView] = useState<ViewType>('organizational')
+  const [activeView, setActiveView] = useState<ViewType>('schedule')
   
   return (
     <div className="main-content-container">
