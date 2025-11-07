@@ -1,0 +1,479 @@
+.station-overview-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #c0c0c0;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+}
+
+/* Tab bar */
+.tab-bar {
+  display: flex;
+  background-color: #c0c0c0;
+  border-bottom: 2px solid #ffffff;
+  padding: 2px 4px 0;
+  align-items: flex-end;
+}
+
+.tab {
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #c0c0c0 #ffffff;
+  padding: 3px 8px;
+  margin-right: 1px;
+  cursor: pointer;
+  font-size: 11px;
+  border-bottom: none;
+}
+
+.tab.active {
+  background-color: #e8e8e8;
+  border-bottom: 2px solid #e8e8e8;
+  position: relative;
+  z-index: 1;
+  padding: 4px 8px 4px;
+}
+
+.tab-spacer {
+  flex: 1;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  margin-bottom: 2px;
+}
+
+.search-input {
+  padding: 2px 4px;
+  border: 1px solid #808080;
+  background-color: #ffffff;
+  font-size: 11px;
+  width: 150px;
+}
+
+/* Main layout */
+.main-layout {
+  flex: 1;
+  display: flex;
+  background-color: #e8e8e8;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+}
+
+/* Upper section */
+.upper-section {
+  display: flex;
+  gap: 4px;
+  height: 55%;
+  min-height: 380px;
+}
+
+/* LOUNGE S4 section */
+.lounge-section {
+  width: 35%;
+  background-color: #d0ffd0;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-header {
+  background-color: #008080;
+  color: white;
+  padding: 2px 4px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #000000;
+}
+
+/* Right pink section */
+.right-section {
+  flex: 1;
+  background-color: #fff8f8;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  overflow: auto;
+}
+
+.cards-container {
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Patient card styles */
+.patient-card {
+  border: 1px solid #808080;
+  background-color: #ffffff;
+  padding: 2px 3px;
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+
+.patient-card.yellow {
+  background-color: #ffffcc;
+}
+
+.card-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.card-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50px;
+}
+
+.patient-number {
+  font-weight: bold;
+  font-size: 9px;
+  background-color: #e0e0e0;
+  padding: 0 3px;
+  border: 1px solid #808080;
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+.card-middle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  flex-wrap: nowrap;
+  margin-bottom: 2px;
+}
+
+.tiny-checkbox {
+  width: 9px;
+  height: 9px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.inline-status {
+  font-size: 9px;
+  color: #ff0000;
+  font-style: italic;
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 1px;
+}
+
+.gender-icon {
+  display: inline-block;
+  font-weight: bold;
+  color: #0000ff;
+  font-size: 11px;
+  width: 14px;
+}
+
+.gender-icon.female {
+  color: #ff00ff;
+}
+
+.patient-name {
+  font-size: 10px;
+  color: #000080;
+}
+
+.code-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.patient-code {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.additional-text {
+  font-size: 9px;
+  margin-left: 8px;
+}
+
+.additional-text.orange {
+  color: #ff8800;
+}
+
+.bottom-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 1px;
+}
+
+.status-text {
+  font-size: 9px;
+  color: #000080;
+}
+
+.card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-width: 60px;
+}
+
+.icon {
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+
+.icon.triangle-yellow {
+  color: #ffaa00;
+}
+
+.icon.triangle-blue {
+  color: #0080ff;
+}
+
+.icon.square-red {
+  color: #ff0000;
+}
+
+.room-info {
+  font-size: 10px;
+  font-weight: bold;
+  color: #000080;
+  margin-bottom: 2px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.mini-btn {
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border: 1px solid #808080;
+  background-color: #c0c0c0;
+  cursor: pointer;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-btn:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* Bottom section */
+.bottom-section {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+  min-height: 0;
+}
+
+/* Table container */
+.table-container {
+  flex: 1;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.table-tabs {
+  background-color: #e0e0e0;
+  padding: 2px 4px;
+  border-bottom: 1px solid #808080;
+  display: flex;
+  gap: 8px;
+  font-size: 10px;
+}
+
+.table-tab {
+  cursor: pointer;
+  padding: 1px 4px;
+}
+
+.table-tab.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.divider {
+  color: #808080;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  flex: 1;
+}
+
+.data-table thead {
+  background-color: #e0e0e0;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 2px 4px;
+  border: 1px solid #c0c0c0;
+  font-weight: normal;
+  font-size: 10px;
+}
+
+.data-table td {
+  padding: 2px 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.data-table tr.selected {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+.gender-icon-small {
+  margin-right: 4px;
+  font-weight: bold;
+}
+
+/* Filter panel */
+.filter-panel {
+  width: 250px;
+  background-color: #c8e8c8;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-header {
+  background-color: #008080;
+  color: white;
+  padding: 2px 4px;
+  font-weight: bold;
+  border-bottom: 1px solid #000000;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filter-content {
+  padding: 4px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.filter-field {
+  margin-bottom: 8px;
+}
+
+.filter-field label {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.filter-field select {
+  width: 100%;
+  padding: 1px 2px;
+  font-size: 10px;
+  border: 1px solid #808080;
+  background-color: #ffffff;
+}
+
+.stats-grid {
+  font-size: 10px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.stat-value {
+  font-weight: bold;
+}
+
+.stat-section {
+  margin-top: 8px;
+}
+
+.stat-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #808080;
+  padding-bottom: 2px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1px 0;
+  margin-left: 8px;
+}
+
+/* Scrollbar styling */
+.right-section::-webkit-scrollbar,
+.filter-content::-webkit-scrollbar {
+  width: 16px;
+}
+
+.right-section::-webkit-scrollbar-track,
+.filter-content::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.right-section::-webkit-scrollbar-thumb,
+.filter-content::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .lounge-section {
+    width: 40%;
+  }
+  
+  .filter-panel {
+    width: 200px;
+  }
+}
