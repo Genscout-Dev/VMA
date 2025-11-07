@@ -1,0 +1,455 @@
+/* Windows XP Classic Theme - Exact Carbon Copy from Screenshot */
+
+.xp-org-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #ECE9D8;
+  font-family: 'Tahoma', 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  color: #000000;
+}
+
+/* Green Header Bar - Exact Match to Screenshot */
+.xp-header-bar {
+  background: linear-gradient(to bottom, #6B9A6B 0%, #5A8A5A 100%);
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+  border-bottom: 1px solid #4A7A4A;
+}
+
+.xp-header-text {
+  color: #000000;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+/* Top Controls Section */
+.xp-controls-section {
+  background: #D4D0C8;
+  padding: 5px 8px;
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid #808080;
+}
+
+.xp-control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.xp-label {
+  font-size: 11px;
+  color: #000000;
+  white-space: nowrap;
+  min-width: 75px;
+}
+
+.xp-input-wrapper {
+  display: inline-block;
+}
+
+.xp-textbox {
+  width: 280px;
+  height: 20px;
+  border: 1px solid;
+  border-color: #848484 #FFFFFF #FFFFFF #848484;
+  background: #FFFFFF;
+  padding: 2px 3px;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  color: #000000;
+}
+
+.xp-select {
+  width: 320px;
+  height: 20px;
+  border: 1px solid;
+  border-color: #848484 #FFFFFF #FFFFFF #848484;
+  background: #FFFFFF;
+  padding: 1px 2px;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  color: #000000;
+}
+
+/* Authorization Section */
+.xp-auth-section {
+  background: #ECE9D8;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #808080;
+}
+
+.xp-checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.xp-checkbox {
+  width: 13px;
+  height: 13px;
+  margin: 0;
+}
+
+.xp-checkbox-label {
+  font-size: 11px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.xp-begruendung-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 20px;
+}
+
+.xp-label-italic {
+  font-size: 11px;
+  font-style: italic;
+  color: #808080;
+  white-space: nowrap;
+  text-decoration: underline;
+}
+
+.xp-textbox-long {
+  width: 400px;
+  height: 20px;
+  border: 1px solid;
+  border-color: #848484 #FFFFFF #FFFFFF #848484;
+  background: #FFFFFF;
+  padding: 2px 3px;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+}
+
+/* Main Section */
+.xp-main-section {
+  flex: 1;
+  padding: 6px;
+  background: #ECE9D8;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.xp-section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.xp-section-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.xp-checkmark {
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(to bottom, #6B9A6B 0%, #5A8A5A 100%);
+  border: 1px solid #4A7A4A;
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Table Sections */
+.xp-table-section {
+  margin-bottom: 10px;
+}
+
+.xp-table-title {
+  font-size: 11px;
+  color: #808080;
+  margin-bottom: 2px;
+  padding-left: 2px;
+}
+
+.xp-table-wrapper {
+  border: 2px inset #D4D0C8;
+  background: #FFFFFF;
+}
+
+/* Filter Bar */
+.xp-table-filter-bar {
+  display: flex;
+  background: #D4D0C8;
+  border-bottom: 1px solid #808080;
+  height: 22px;
+  align-items: center;
+}
+
+.xp-filter-cell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 4px;
+  border-right: 1px solid #FFFFFF;
+  height: 100%;
+}
+
+.xp-filter-cell:last-child {
+  border-right: none;
+}
+
+.xp-filter-label {
+  font-size: 11px;
+  color: #000000;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.xp-filter-input {
+  flex: 1;
+  height: 16px;
+  border: 1px solid;
+  border-color: #848484 #FFFFFF #FFFFFF #848484;
+  background: #FFFFFF;
+  padding: 1px 2px;
+  font-size: 11px;
+  font-family: 'Tahoma', sans-serif;
+  margin-left: 4px;
+}
+
+/* Table Styling for ScrollableArea */
+.scrollable-area {
+  background: #FFFFFF;
+}
+
+/* Table Styles */
+.xp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  font-family: 'Tahoma', sans-serif;
+}
+
+.xp-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.xp-th {
+  background: linear-gradient(to bottom, #D4D0C8 0%, #C0C0C0 100%);
+  border: 1px solid;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF;
+  padding: 2px 4px;
+  text-align: left;
+  font-weight: normal;
+  font-size: 11px;
+  color: #000000;
+  height: 19px;
+  position: relative;
+  user-select: none;
+  cursor: default;
+}
+
+.xp-th-text {
+  display: inline-block;
+}
+
+.xp-sort-icon {
+  font-size: 8px;
+  color: #000000;
+  margin-left: 2px;
+  vertical-align: middle;
+}
+
+.xp-td {
+  border: 1px solid #D4D0C8;
+  padding: 1px 3px;
+  font-size: 11px;
+  color: #000000;
+  height: 17px;
+  cursor: default;
+  background: inherit;
+}
+
+/* Row Coloring - Matching Screenshot */
+.xp-row-even {
+  background: #FFFFFF;
+}
+
+.xp-row-odd {
+  background: #FFFFFF;
+}
+
+.xp-row-selected {
+  background: #FFFF99 !important;
+}
+
+.xp-row-selected td {
+  background: #FFFF99 !important;
+}
+
+.xp-row-even:hover:not(.xp-row-selected),
+.xp-row-odd:hover:not(.xp-row-selected) {
+  background: #E8E8FF;
+}
+
+/* Type Cell with Icons */
+.xp-type-cell {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Windows XP Classic Icons - Exact Match */
+.xp-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Fachabteilung Icon - Gray Building/Folder */
+.xp-icon-fachabteilung {
+  background: linear-gradient(to bottom, #E0E0E0 0%, #C0C0C0 100%);
+  border: 1px solid #808080;
+  position: relative;
+}
+
+.xp-icon-fachabteilung::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 3px;
+  height: 3px;
+  background: #606060;
+  box-shadow: 
+    5px 0 #606060,
+    0 5px #606060,
+    5px 5px #606060,
+    0 9px #606060,
+    5px 9px #606060;
+}
+
+/* Chefarztamb Icon - Medical Bag with Red Cross */
+.xp-icon-chefarztamb {
+  background: linear-gradient(to bottom, #E0E0E0 0%, #C0C0C0 100%);
+  border: 1px solid #808080;
+  position: relative;
+  border-radius: 0 0 2px 2px;
+}
+
+.xp-icon-chefarztamb::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 4px;
+  right: 4px;
+  height: 3px;
+  background: #C0C0C0;
+  border: 1px solid #808080;
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+}
+
+.xp-icon-chefarztamb::after {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FF0000;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+/* Institutsamb Icon - Hospital Building */
+.xp-icon-institutsamb {
+  background: linear-gradient(to bottom, #E0E0E0 0%, #C0C0C0 100%);
+  border: 1px solid #808080;
+  position: relative;
+}
+
+.xp-icon-institutsamb::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 3px solid #606060;
+}
+
+.xp-icon-institutsamb::after {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FF0000;
+  font-size: 9px;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+/* Station Icon - Bed Symbol */
+.xp-icon-station {
+  background: linear-gradient(to bottom, #E0E0E0 0%, #C0C0C0 100%);
+  border: 1px solid #808080;
+  position: relative;
+}
+
+.xp-icon-station::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  right: 2px;
+  height: 4px;
+  background: #808080;
+  opacity: 0.4;
+}
+
+.xp-icon-station::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 2px;
+  right: 2px;
+  height: 4px;
+  background: #808080;
+  opacity: 0.3;
+}
+
+/* Adjust heights for proper layout with ScrollableArea */
+.xp-table-section:last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.xp-table-section:last-child .xp-table-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.xp-table-section:last-child .scrollable-area {
+  flex: 1;
+}

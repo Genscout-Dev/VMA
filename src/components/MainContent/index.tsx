@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import PatientForm from '../PatientForm'
 import ScheduleView from '../ScheduleView'
+import OrganizationalUnits from '../OrganizationalUnits'
 import './index.css'
 
-type ViewType = 'patient' | 'schedule'
+type ViewType = 'patient' | 'schedule' | 'organizational'
 
 const MainContent: React.FC = () => {
-  const [activeView, setActiveView] = useState<ViewType>('patient')
+  const [activeView, setActiveView] = useState<ViewType>('organizational')
   
   return (
     <div className="main-content-container">
@@ -24,6 +25,12 @@ const MainContent: React.FC = () => {
         >
           Stationsübersicht
         </button>
+        <button 
+          className={`main-tab ${activeView === 'organizational' ? 'active' : ''}`}
+          onClick={() => setActiveView('organizational')}
+        >
+          Organisationseinheiten
+        </button>
         <div className="tab-filler"></div>
         <div className="tab-info">
           <span className="user-info">BWAA@KHVH04 ORBIS4302.11010.DAC1b</span>
@@ -35,6 +42,7 @@ const MainContent: React.FC = () => {
       <div className="content-area">
         {activeView === 'patient' && <PatientForm />}
         {activeView === 'schedule' && <ScheduleView />}
+        {activeView === 'organizational' && <OrganizationalUnits />}
       </div>
     </div>
   )
