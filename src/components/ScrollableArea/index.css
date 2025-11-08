@@ -3,6 +3,29 @@
   display: block;
   overflow-y: auto;
   overflow-x: hidden;
+  /* Fix: Reset padding and margin to prevent inheritance from xp.css or browser defaults */
+  padding: 0;
+  margin: 0;
+  background-color: transparent !important;
+}
+
+/* Ensure child elements maintain proper line-height */
+.scrollable-area > * {
+  line-height: normal;
+  /* Fix: Remove any margin from first and last children */
+  margin: 0;
+}
+
+/* Fix: Ensure first child has no top margin/padding */
+.scrollable-area > *:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Fix: Ensure last child has no bottom margin/padding */
+.scrollable-area > *:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .scrollable-area::-webkit-scrollbar {
@@ -10,17 +33,17 @@
 }
 
 .scrollable-area::-webkit-scrollbar-corner {
-  background: var(--green-light);
+  background: var(--white);
 }
 
 .scrollable-area::-webkit-scrollbar-track {
-  background: var(--gray-light);
+  background: var(--white);
 }
 
 .scrollable-area::-webkit-scrollbar-thumb {
   background-position: center;
   background-repeat: no-repeat;
-  background-color: var(--green-lighter);
+  background-color: var(--green-toolbar);
   background-image: url('/src/assets/icons/scroll-thumb.svg');
   background-size: 7px;
   border: 1px solid var(--green-light);
@@ -42,7 +65,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-color: var(--green-lighter);
+  background-color: var(--green-toolbar);
   border: 1px solid var(--green-light);
 }
 

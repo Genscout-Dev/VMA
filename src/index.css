@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Import MS Sans Serif and Perfect DOS VGA font */
 @font-face {
   font-family: 'MS Sans Serif';
@@ -78,4 +82,3 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   margin: 0;
 }
-

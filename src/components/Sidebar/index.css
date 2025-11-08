@@ -2,8 +2,8 @@
   width: 260px;
   min-width: 260px;
   height: 100vh;
-  background-color: var(--green-light);
-  border-right: 15px solid var(--green-dark);
+  background-color: var(--green-light) !important;
+  border-right: 15px solid var(--green-dark) !important;
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -11,15 +11,31 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* Fix: Ensure no gaps between child elements */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Ensure all sidebar children maintain green background unless explicitly overridden */
+.sidebar > * {
+  background-color: var(--green-light) !important;
 }
 
 .sidebar-section {
-  margin-bottom: 0px;
+  /* Fix: Ensure no gaps between sections */
+  margin: 0;
+  padding: 0;
+  /* Set background to match sidebar to prevent gray bleed-through */
+  background-color: var(--green-light) !important;
+  /* Fix: Force-collapse any font or line-height gaps between children */
+  font-size: 0;
+  line-height: 0;
 }
 
-.section-header {
-  background-color: var(--green-dark);
-  color: var(--white);
+.sidebar .section-header {
+  background-color: var(--green-dark) !important;
+  color: var(--white) !important;
   padding: 3px 4px;
   font-size: 11px;
   font-weight: normal;
@@ -28,18 +44,29 @@
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Fix: Ensure no margins that could cause gaps */
+  margin: 0;
+  /* Remove any potential borders */
+  border: none;
+  /* Ensure headers connect seamlessly */
+  display: block;
 }
 
-.section-content {
-  background-color: var(--green-light);
+.sidebar .section-content {
+  background-color: var(--green-light) !important;
   padding: 0;
+  /* Fix: Reset margin and ensure proper line-height */
+  margin: 0;
+  /* Fix: Restore line-height and font-size for content */
+  line-height: normal;
+  font-size: 11px;
 }
 
 .sidebar-section.collapsed .section-content {
   display: none;
 }
 
-.sidebar-item {
+.sidebar .sidebar-item {
   padding: 2px 4px;
   line-height: 15px;
   cursor: pointer;
@@ -50,24 +77,36 @@
   font-size: 11px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Fix: Ensure no margin on items */
+  margin: 0;
+  display: block;
+  background-color: transparent;
+  /* Smooth transitions */
+  transition: background-color 0.2s ease;
 }
 
-.sidebar-item.bold {
+.sidebar .sidebar-item.bold {
   font-weight: bold;
+}
+
+/* Hover state - gray */
+.sidebar .sidebar-item:hover {
+  background-color: var(--selection-gray) !important;
+}
+
+/* Selected state - orange (on click) */
+.sidebar .sidebar-item.selected {
+  background-color: var(--selection-orange) !important;
+}
+
+/* Keep orange on hover when selected */
+.sidebar .sidebar-item.selected:hover {
+  background-color: var(--selection-orange) !important;
 }
 
 .subsection-divider {
   height: 3px;
   background-color: var(--green-dark);
   margin: 0px;
-}
-
-/* Section-specific selection colors */
-[data-section="overview"] .sidebar-item.selected {
-  background-color: var(--selection-gray);
-}
-
-[data-section="files"] .sidebar-item.selected {
-  background-color: var(--selection-orange);
 }
 

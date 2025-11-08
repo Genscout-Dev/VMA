@@ -1,7 +1,8 @@
 .toolbar-container {
   display: flex;
   flex-direction: column;
-  border-bottom: 2px solid var(--gray-dark);
+  gap: 0;
+  background-color: var(--green-light);
 }
 
 /* Top Logo Bar */
@@ -13,7 +14,7 @@
   font-size: 11px;
   color: var(--white);
   padding-left: 4px;
-  border-bottom: 1px solid var(--gray-dark);
+  border: none;
 }
 
 .toolbar-logo-text {
@@ -50,7 +51,7 @@
   background-color: var(--green-toolbar);
   padding-left: 4px;
   padding-right: 8px;
-  border-top: 1px solid var(--gray-dark);
+  border: none;
 }
 
 .toolbar-icons {
@@ -93,7 +94,7 @@
   height: 20px;
   background-color: var(--green-dark);
   padding-left: 4px;
-  border-top: 1px solid var(--gray-dark);
+  border: none;
   font-size: 11px;
   color: var(--white);
 }
