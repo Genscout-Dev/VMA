@@ -80,25 +80,33 @@
   /* Fix: Ensure no margin on items */
   margin: 0;
   display: block;
-  background-color: transparent !important;
+  background-color: transparent;
+  /* Smooth transitions */
+  transition: background-color 0.2s ease;
 }
 
 .sidebar .sidebar-item.bold {
   font-weight: bold;
 }
 
+/* Hover state - gray */
+.sidebar .sidebar-item:hover {
+  background-color: var(--selection-gray) !important;
+}
+
+/* Selected state - orange (on click) */
+.sidebar .sidebar-item.selected {
+  background-color: var(--selection-orange) !important;
+}
+
+/* Keep orange on hover when selected */
+.sidebar .sidebar-item.selected:hover {
+  background-color: var(--selection-orange) !important;
+}
+
 .subsection-divider {
   height: 3px;
   background-color: var(--green-dark);
   margin: 0px;
-}
-
-/* Section-specific selection colors */
-[data-section="overview"] .sidebar-item.selected {
-  background-color: var(--selection-gray);
-}
-
-[data-section="files"] .sidebar-item.selected {
-  background-color: var(--selection-orange);
 }
 

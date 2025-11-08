@@ -33,17 +33,17 @@
 }
 
 .scrollable-area::-webkit-scrollbar-corner {
-  background: var(--green-light);
+  background: var(--white);
 }
 
 .scrollable-area::-webkit-scrollbar-track {
-  background: var(--green-light);
+  background: var(--white);
 }
 
 .scrollable-area::-webkit-scrollbar-thumb {
   background-position: center;
   background-repeat: no-repeat;
-  background-color: var(--green-lighter);
+  background-color: var(--green-toolbar);
   background-image: url('/src/assets/icons/scroll-thumb.svg');
   background-size: 7px;
   border: 1px solid var(--green-light);
@@ -65,7 +65,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-color: var(--green-lighter);
+  background-color: var(--green-toolbar);
   border: 1px solid var(--green-light);
 }
 

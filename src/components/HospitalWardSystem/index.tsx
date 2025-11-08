@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { User, AlertTriangle, Droplet } from 'lucide-react';
+import { AppState } from '../../App';
 
 interface Patient {
   id: string;
@@ -16,7 +17,12 @@ interface Patient {
   buttonNumber?: number;
 }
 
-const HospitalWardSystem = () => {
+interface HospitalWardSystemProps {
+  appState?: AppState;
+  updateAppState: (updates: Partial<AppState>) => void;
+}
+
+const HospitalWardSystem = ({ updateAppState }: HospitalWardSystemProps) => {
   const [activeTab, setActiveTab] = useState('Warteliste');
 
   const leftPatients: Patient[] = [
@@ -167,7 +173,20 @@ const HospitalWardSystem = () => {
   );
 
   const PatientCard = ({ patient }: { patient: Patient; isLeft?: boolean }) => (
-    <div className="flex items-start gap-2 border-b border-gray-300 py-2 px-2">
+    <div 
+      className="flex items-start gap-2 border-b border-gray-300 py-2 px-2 hover:bg-gray-50 cursor-pointer"
+      onClick={() => {
+        // Extract just the name without age for the selected patient
+        const nameWithoutAge = patient.name.split(' (')[0];
+        updateAppState({
+          selectedPatient: {
+            id: patient.id,
+            name: nameWithoutAge
+          },
+          sidebarSection2Visible: true
+        })
+      }}
+    >
       <User className={`w-4 h-4 mt-0.5 flex-shrink-0 ${patient.gender === 'male' ? 'text-blue-600' : 'text-pink-600'}`} />
       <div className="flex-1 min-w-0">
         {patient.status && patient.statusColor && (

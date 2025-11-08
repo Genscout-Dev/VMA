@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ScrollableArea from '../ScrollableArea'
+import { AppState } from '../../App'
 import './index.css'
 
 interface OrganizationalUnit {
@@ -9,7 +10,12 @@ interface OrganizationalUnit {
   typLabel: string
 }
 
-const OrganizationalUnits: React.FC = () => {
+interface OrganizationalUnitsProps {
+  appState?: AppState
+  updateAppState: (updates: Partial<AppState>) => void
+}
+
+const OrganizationalUnits: React.FC<OrganizationalUnitsProps> = ({ updateAppState }) => {
   const [selectedStation, setSelectedStation] = useState<string | null>('S4 BWAA')
   const [notdienst, setNotdienst] = useState(false)
   const [begruendung, setBegruendung] = useState('')
@@ -177,7 +183,17 @@ const OrganizationalUnits: React.FC = () => {
                     <tr 
                       key={unit.kuerzel} 
                       className={`${index % 2 === 0 ? 'xp-row-even' : 'xp-row-odd'} ${selectedStation === unit.kuerzel ? 'xp-row-selected' : ''}`}
-                      onClick={() => setSelectedStation(unit.kuerzel)}
+                      onClick={() => {
+                        setSelectedStation(unit.kuerzel)
+                        // When station is clicked, show sidebar with Section 1
+                        updateAppState({
+                          selectedStation: unit.kuerzel,
+                          showSidebar: true,
+                          sidebarSection1Expanded: true,
+                          sidebarSection2Visible: false
+                        })
+                      }}
+                      style={{ cursor: 'pointer' }}
                     >
                       <td className="xp-td">{unit.kuerzel}</td>
                       <td className="xp-td">{unit.bezeichnung}</td>
