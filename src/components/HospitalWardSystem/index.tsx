@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { User, AlertTriangle, Droplet } from 'lucide-react';
-import ScrollableArea from '../ScrollableArea';
 
 interface Patient {
   id: string;
@@ -258,15 +257,13 @@ const HospitalWardSystem = () => {
             </div>
 
             {/* S4-325 Room - Green Background */}
-            <div className="bg-green-100 border-b border-gray-400 flex-1">
+            <div className="bg-green-100 border-b border-gray-400 flex-1 overflow-auto">
               <div className="flex h-full">
                 <div className="w-20 font-semibold text-sm p-2 flex-shrink-0">S4-325-2</div>
-                <div className="flex-1 border-l border-gray-300 h-full">
-                  <ScrollableArea>
-                    {leftPatients.slice(2, 4).map((patient) => (
-                      <PatientCard key={patient.id} patient={patient} isLeft={true} />
-                    ))}
-                  </ScrollableArea>
+                <div className="flex-1 border-l border-gray-300">
+                  {leftPatients.slice(2, 4).map((patient) => (
+                    <PatientCard key={patient.id} patient={patient} isLeft={true} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -281,13 +278,11 @@ const HospitalWardSystem = () => {
             <div className="border-b border-gray-400 bg-white" style={{ height: '16.66%' }}>
               <div className="flex h-full">
                 <div className="w-20 font-semibold text-sm p-2 flex-shrink-0">S4-328-2</div>
-                <div className="flex-1 border-l border-gray-300 h-full">
-                  <ScrollableArea>
-                    <div className="text-xs text-red-600 bg-red-50 px-2 py-0.5">
-                      Gesperrt wg. infektiösem Nachbarbett
-                    </div>
-                    <PatientCard patient={rightPatients[0]} isLeft={false} />
-                  </ScrollableArea>
+                <div className="flex-1 border-l border-gray-300 overflow-auto">
+                  <div className="text-xs text-red-600 bg-red-50 px-2 py-0.5">
+                    Gesperrt wg. infektiösem Nachbarbett
+                  </div>
+                  <PatientCard patient={rightPatients[0]} isLeft={false} />
                 </div>
               </div>
             </div>
@@ -296,10 +291,8 @@ const HospitalWardSystem = () => {
             <div className="border-b border-gray-400 bg-white" style={{ height: '16.66%' }}>
               <div className="flex h-full">
                 <div className="w-20 font-semibold text-sm p-2 flex-shrink-0">S4-329-2</div>
-                <div className="flex-1 border-l border-gray-300 h-full">
-                  <ScrollableArea>
-                    <PatientCard patient={rightPatients[1]} isLeft={false} />
-                  </ScrollableArea>
+                <div className="flex-1 border-l border-gray-300 overflow-auto">
+                  <PatientCard patient={rightPatients[1]} isLeft={false} />
                 </div>
               </div>
             </div>
@@ -308,10 +301,8 @@ const HospitalWardSystem = () => {
             <div className="border-b border-gray-400 bg-white" style={{ height: '16.66%' }}>
               <div className="flex h-full">
                 <div className="w-20 font-semibold text-sm p-2 flex-shrink-0">S4-330-2</div>
-                <div className="flex-1 border-l border-gray-300 h-full">
-                  <ScrollableArea>
-                    <PatientCard patient={rightPatients[2]} isLeft={false} />
-                  </ScrollableArea>
+                <div className="flex-1 border-l border-gray-300 overflow-auto">
+                  <PatientCard patient={rightPatients[2]} isLeft={false} />
                 </div>
               </div>
             </div>
@@ -320,12 +311,10 @@ const HospitalWardSystem = () => {
             <div className="border-b border-gray-400 bg-white" style={{ height: '16.66%' }}>
               <div className="flex h-full">
                 <div className="w-20 font-semibold text-sm p-2 flex-shrink-0">S4-331-2</div>
-                <div className="flex-1 border-l border-gray-300 h-full">
-                  <ScrollableArea>
-                    {rightPatients.slice(3, 5).map((patient) => (
-                      <PatientCard key={patient.id} patient={patient} isLeft={false} />
-                    ))}
-                  </ScrollableArea>
+                <div className="flex-1 border-l border-gray-300 overflow-auto">
+                  {rightPatients.slice(3, 5).map((patient) => (
+                    <PatientCard key={patient.id} patient={patient} isLeft={false} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -334,13 +323,11 @@ const HospitalWardSystem = () => {
             <div className="border-b border-gray-400 bg-white" style={{ height: '16.66%' }}>
               <div className="flex h-full">
                 <div className="w-20 font-semibold text-sm p-2 flex-shrink-0">S4-332-2</div>
-                <div className="flex-1 border-l border-gray-300 h-full">
-                  <ScrollableArea>
-                    <div className="text-xs text-red-600 bg-red-50 px-2 py-0.5">
-                      29.10. Heilerscheinik // immm Staheo von sich
-                    </div>
-                    <PatientCard patient={rightPatients[5]} isLeft={false} />
-                  </ScrollableArea>
+                <div className="flex-1 border-l border-gray-300 overflow-auto">
+                  <div className="text-xs text-red-600 bg-red-50 px-2 py-0.5">
+                    29.10. Heilerscheinik // immm Staheo von sich
+                  </div>
+                  <PatientCard patient={rightPatients[5]} isLeft={false} />
                 </div>
               </div>
             </div>
@@ -395,30 +382,28 @@ const HospitalWardSystem = () => {
         </div>
 
         {/* Table Content */}
-        <div className="flex-1 min-h-0">
-          <ScrollableArea>
-            {bottomPatients.map((patient, i) => (
-              <div key={i} className="flex px-3 py-1.5 text-xs border-b border-gray-300 items-center hover:bg-gray-50">
-                <div className="w-24 flex items-center gap-1">
-                  <User className={`w-3.5 h-3.5 ${patient.gender === 'male' ? 'text-red-600' : 'text-pink-600'}`} />
-                  <span className="text-red-600">{patient.name}</span>
-                </div>
-                <div className="w-16">{patient.gender === 'male' ? '♂' : '♀'}</div>
-                <div className="w-16">{patient.status}</div>
-                <div className="w-20">{patient.condition}</div>
-                <div className="w-24">{patient.label}</div>
-                <div className="flex-1 text-gray-700">
-                  {i === 0 ? patient.info : (
-                    <>
-                      <span className="text-green-600">{patient.info.split(' ')[0]}</span>
-                      <span> {patient.info.split(' ').slice(1).join(' ')}</span>
-                    </>
-                  )}
-                </div>
-                <div className="w-8"></div>
+        <div className="flex-1 overflow-auto">
+          {bottomPatients.map((patient, i) => (
+            <div key={i} className="flex px-3 py-1.5 text-xs border-b border-gray-300 items-center hover:bg-gray-50">
+              <div className="w-24 flex items-center gap-1">
+                <User className={`w-3.5 h-3.5 ${patient.gender === 'male' ? 'text-red-600' : 'text-pink-600'}`} />
+                <span className="text-red-600">{patient.name}</span>
               </div>
-            ))}
-          </ScrollableArea>
+              <div className="w-16">{patient.gender === 'male' ? '♂' : '♀'}</div>
+              <div className="w-16">{patient.status}</div>
+              <div className="w-20">{patient.condition}</div>
+              <div className="w-24">{patient.label}</div>
+              <div className="flex-1 text-gray-700">
+                {i === 0 ? patient.info : (
+                  <>
+                    <span className="text-green-600">{patient.info.split(' ')[0]}</span>
+                    <span> {patient.info.split(' ').slice(1).join(' ')}</span>
+                  </>
+                )}
+              </div>
+              <div className="w-8"></div>
+            </div>
+          ))}
         </div>
 
         {/* Station Info at bottom */}

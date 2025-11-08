@@ -4,13 +4,11 @@ import './index.css'
 interface ScrollableAreaProps {
   children: ReactNode
   maxHeight?: string
-  className?: string
 }
 
-export default function ScrollableArea({ children, maxHeight, className = '' }: ScrollableAreaProps) {
-  const style = maxHeight ? { maxHeight } : { height: '100%' }
+export default function ScrollableArea({ children, maxHeight = '100px' }: ScrollableAreaProps) {
   return (
-    <div className={`scrollable-area ${className}`} style={style}>
+    <div className="scrollable-area" style={{ maxHeight }}>
       {children}
     </div>
   )
