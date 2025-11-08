@@ -6,6 +6,8 @@
   /* Fix: Reset padding and margin to prevent inheritance from xp.css or browser defaults */
   padding: 0;
   margin: 0;
+  background-color: transparent !important;
+  box-sizing: border-box;
 }
 
 /* Ensure child elements maintain proper line-height */

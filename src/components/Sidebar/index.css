@@ -2,8 +2,8 @@
   width: 260px;
   min-width: 260px;
   height: 100vh;
-  background-color: var(--green-light);
-  border-right: 15px solid var(--green-dark);
+  background-color: var(--green-light) !important;
+  border-right: 15px solid var(--green-dark) !important;
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -17,20 +17,25 @@
   gap: 0;
 }
 
+/* Ensure all sidebar children maintain green background unless explicitly overridden */
+.sidebar > * {
+  background-color: var(--green-light) !important;
+}
+
 .sidebar-section {
   /* Fix: Ensure no gaps between sections */
   margin: 0;
   padding: 0;
   /* Set background to match sidebar to prevent gray bleed-through */
-  background-color: var(--green-light);
+  background-color: var(--green-light) !important;
   /* Fix: Force-collapse any font or line-height gaps between children */
   font-size: 0;
   line-height: 0;
 }
 
 .sidebar .section-header {
-  background-color: var(--green-dark);
-  color: var(--white);
+  background-color: var(--green-dark) !important;
+  color: var(--white) !important;
   padding: 3px 4px;
   font-size: 11px;
   font-weight: normal;
@@ -48,7 +53,7 @@
 }
 
 .sidebar .section-content {
-  background-color: var(--green-light);
+  background-color: var(--green-light) !important;
   padding: 0;
   /* Fix: Reset margin and ensure proper line-height */
   margin: 0;
@@ -75,6 +80,7 @@
   /* Fix: Ensure no margin on items */
   margin: 0;
   display: block;
+  background-color: transparent !important;
 }
 
 .sidebar .sidebar-item.bold {

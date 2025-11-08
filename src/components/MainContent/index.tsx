@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import PatientForm from '../PatientForm'
-import ScheduleView from '../ScheduleView'
+import HospitalWardSystem from '../HospitalWardSystem'
+import OrganizationalUnits from '../OrganizationalUnits'
+import ChatbotButton from '../ChatbotButton'
 import './index.css'
 
-type ViewType = 'patient' | 'schedule'
+type ViewType = 'patient' | 'schedule' | 'ward' | 'organizationalUnits'
 
 const MainContent: React.FC = () => {
   const [activeView, setActiveView] = useState<ViewType>('patient')
@@ -13,16 +15,22 @@ const MainContent: React.FC = () => {
       {/* Top Level Tab Navigation */}
       <div className="main-tabs">
         <button 
+          className={`main-tab ${activeView === 'organizationalUnits' ? 'active' : ''}`}
+          onClick={() => setActiveView('organizationalUnits')}
+        >
+          Organisationseinheiten
+        </button>
+        <button 
           className={`main-tab ${activeView === 'patient' ? 'active' : ''}`}
           onClick={() => setActiveView('patient')}
         >
           Patientendatenmanagement
         </button>
         <button 
-          className={`main-tab ${activeView === 'schedule' ? 'active' : ''}`}
-          onClick={() => setActiveView('schedule')}
+          className={`main-tab ${activeView === 'ward' ? 'active' : ''}`}
+          onClick={() => setActiveView('ward')}
         >
-          Stationsübersicht
+          Stationsansicht
         </button>
         <div className="tab-filler"></div>
         <div className="tab-info">
@@ -33,9 +41,13 @@ const MainContent: React.FC = () => {
       
       {/* Content Area */}
       <div className="content-area">
+        {activeView === 'organizationalUnits' && <OrganizationalUnits />}
         {activeView === 'patient' && <PatientForm />}
-        {activeView === 'schedule' && <ScheduleView />}
+        {activeView === 'ward' && <HospitalWardSystem />}
       </div>
+
+      {/* Chatbot Button */}
+      <ChatbotButton />
     </div>
   )
 }
