@@ -185,12 +185,13 @@ const OrganizationalUnits: React.FC<OrganizationalUnitsProps> = ({ updateAppStat
                       className={`${index % 2 === 0 ? 'xp-row-even' : 'xp-row-odd'} ${selectedStation === unit.kuerzel ? 'xp-row-selected' : ''}`}
                       onClick={() => {
                         setSelectedStation(unit.kuerzel)
-                        // When station is clicked, show sidebar with Section 1
+                        // When station is clicked, show sidebar and go directly to station graphic view
                         updateAppState({
                           selectedStation: unit.kuerzel,
                           showSidebar: true,
                           sidebarSection1Expanded: true,
-                          sidebarSection2Visible: false
+                          sidebarSection2Visible: false,
+                          currentPage: 'stationsansicht'
                         })
                       }}
                       style={{ cursor: 'pointer' }}

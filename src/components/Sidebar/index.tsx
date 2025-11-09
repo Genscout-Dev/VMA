@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ScrollableArea from '../ScrollableArea'
 import { AppState } from '../../App'
 import './index.css'
@@ -15,6 +15,15 @@ export default function Sidebar({ appState, updateAppState }: SidebarProps) {
   const [selectedOverviewNormal, setSelectedOverviewNormal] = useState<Record<string, boolean>>({})
   const [selectedFilesPatients, setSelectedFilesPatients] = useState<Record<string, boolean>>({})
   const [selectedFilesOther, setSelectedFilesOther] = useState<Record<string, boolean>>({})
+  const [selectedMedicalRecords, setSelectedMedicalRecords] = useState<Record<string, boolean>>({ 'Krankengeschichte': true })
+
+  // Automatically select "Station" and "Stationsgrafik" when a station is selected from OrganizationalUnits
+  useEffect(() => {
+    if (appState.selectedStation) {
+      setSelectedOverviewBold({ 'Station': true })
+      setSelectedOverviewNormal({ 'Stationsgrafik': true })
+    }
+  }, [appState.selectedStation])
   
   const handleClick = (
     item: string,
@@ -106,10 +115,14 @@ export default function Sidebar({ appState, updateAppState }: SidebarProps) {
             <div 
               className={`sidebar-item ${selectedOverviewNormal['Stationsgrafik'] ? 'selected' : ''}`}
               onClick={() => {
-                handleClick('Stationsgrafik', setSelectedOverviewNormal)
-                // Check if Station is also selected
-                if (selectedOverviewBold['Station']) {
+                // When Stationsgrafik is clicked and both Station and Stationsgrafik are selected,
+                // navigate to stationsansicht and clear selections
+                if (selectedOverviewBold['Station'] && selectedOverviewNormal['Stationsgrafik']) {
+                  setSelectedOverviewBold({})
+                  setSelectedOverviewNormal({})
                   updateAppState({ currentPage: 'stationsansicht' })
+                } else {
+                  handleClick('Stationsgrafik', setSelectedOverviewNormal)
                 }
               }}
             >
@@ -154,15 +167,13 @@ export default function Sidebar({ appState, updateAppState }: SidebarProps) {
         <div className="sidebar-section" data-section="files">
           <div className="section-header">geöffnete Akten</div>
           <div className="section-content">
-            {/* First subsection - Patient names with scrollbar */}
+            {/* First subsection - Patient name */}
             <ScrollableArea>
               {appState.selectedPatient && (
                 <div 
                   className={`sidebar-item ${selectedFilesPatients[appState.selectedPatient.name] ? 'selected' : ''}`}
                   onClick={() => {
                     handleClick(appState.selectedPatient!.name, setSelectedFilesPatients)
-                    // Navigate to patient info page when patient name is clicked
-                    updateAppState({ currentPage: 'patientInfo' })
                   }}
                 >
                   {appState.selectedPatient.name}
@@ -172,79 +183,98 @@ export default function Sidebar({ appState, updateAppState }: SidebarProps) {
           
           <div className="subsection-divider"></div>
           
-          {/* Second subsection - Other items with scrollbar */}
+          {/* Second subsection - Medical record items */}
           <ScrollableArea>
             <div 
-              className={`sidebar-item ${selectedFilesOther['Planungsbogen Liste'] ? 'selected' : ''}`}
-              onClick={() => handleClick('Planungsbogen Liste', setSelectedFilesOther)}
+              className={`sidebar-item ${selectedMedicalRecords['DRG Workplace'] ? 'selected' : ''}`}
+              onClick={() => handleClick('DRG Workplace', setSelectedMedicalRecords)}
+            >
+              DRG Workplace
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Krankengeschichte'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Krankengeschichte', setSelectedMedicalRecords)}
+              style={{ backgroundColor: selectedMedicalRecords['Krankengeschichte'] ? 'white' : '' }}
+            >
+              Krankengeschichte
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Patientenkurve'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Patientenkurve', setSelectedMedicalRecords)}
+            >
+              Patientenkurve
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Operationen'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Operationen', setSelectedMedicalRecords)}
+            >
+              Operationen
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Labor Kumulativbefund'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Labor Kumulativbefund', setSelectedMedicalRecords)}
+            >
+              Labor Kumulativbefund
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Medikation'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Medikation', setSelectedMedicalRecords)}
+            >
+              Medikation
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Medikationsplan Übersicht'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Medikationsplan Übersicht', setSelectedMedicalRecords)}
+            >
+              Medikationsplan Übersicht
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Wunden Übersicht'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Wunden Übersicht', setSelectedMedicalRecords)}
+            >
+              Wunden Übersicht
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['CARE Listen'] ? 'selected' : ''}`}
+              onClick={() => handleClick('CARE Listen', setSelectedMedicalRecords)}
+            >
+              CARE Listen
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Orthopädie AddOn'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Orthopädie AddOn', setSelectedMedicalRecords)}
+            >
+              Orthopädie AddOn
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['SDOK / PALL AddOn'] ? 'selected' : ''}`}
+              onClick={() => handleClick('SDOK / PALL AddOn', setSelectedMedicalRecords)}
+            >
+              SDOK / PALL AddOn
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['RIS-Kumulativliste'] ? 'selected' : ''}`}
+              onClick={() => handleClick('RIS-Kumulativliste', setSelectedMedicalRecords)}
+            >
+              RIS-Kumulativliste
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Verlauf'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Verlauf', setSelectedMedicalRecords)}
+            >
+              Verlauf
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Multiprofessioneller Verlauf'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Multiprofessioneller Verlauf', setSelectedMedicalRecords)}
+            >
+              Multiprofessioneller Verlauf
+            </div>
+            <div 
+              className={`sidebar-item ${selectedMedicalRecords['Planungsbogen Liste'] ? 'selected' : ''}`}
+              onClick={() => handleClick('Planungsbogen Liste', setSelectedMedicalRecords)}
             >
               Planungsbogen Liste
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['Termine'] ? 'selected' : ''}`}
-              onClick={() => handleClick('Termine', setSelectedFilesOther)}
-            >
-              Termine
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['Alerts: Patientenanamnese'] ? 'selected' : ''}`}
-              onClick={() => handleClick('Alerts: Patientenanamnese', setSelectedFilesOther)}
-            >
-              Alerts: Patientenanamnese
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['NFDM'] ? 'selected' : ''}`}
-              onClick={() => handleClick('NFDM', setSelectedFilesOther)}
-            >
-              NFDM
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['KIM / KANT Nachrichten'] ? 'selected' : ''}`}
-              onClick={() => handleClick('KIM / KANT Nachrichten', setSelectedFilesOther)}
-            >
-              KIM / KANT Nachrichten
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['Tarifneutrale Leistungen'] ? 'selected' : ''}`}
-              onClick={() => handleClick('Tarifneutrale Leistungen', setSelectedFilesOther)}
-            >
-              Tarifneutrale Leistungen
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['Abteilungskatalog'] ? 'selected' : ''}`}
-              onClick={() => handleClick('Abteilungskatalog', setSelectedFilesOther)}
-            >
-              Abteilungskatalog
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['Zahlungen in anderen KKs'] ? 'selected' : ''}`}
-              onClick={() => handleClick('Zahlungen in anderen KKs', setSelectedFilesOther)}
-            >
-              Zahlungen in anderen KKs
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['Abgeschlossene Akten'] ? 'selected' : ''}`}
-              onClick={() => handleClick('Abgeschlossene Akten', setSelectedFilesOther)}
-            >
-              Abgeschlossene Akten
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['Abteilung und Diagnosen'] ? 'selected' : ''}`}
-              onClick={() => handleClick('Abteilung und Diagnosen', setSelectedFilesOther)}
-            >
-              Abteilung und Diagnosen
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['E-Health Versandassistent'] ? 'selected' : ''}`}
-              onClick={() => handleClick('E-Health Versandassistent', setSelectedFilesOther)}
-            >
-              E-Health Versandassistent
-            </div>
-            <div 
-              className={`sidebar-item ${selectedFilesOther['[MTS Notfallprotokoll Arzt]'] ? 'selected' : ''}`}
-              onClick={() => handleClick('[MTS Notfallprotokoll Arzt]', setSelectedFilesOther)}
-            >
-              [MTS Notfallprotokoll Arzt]
             </div>
           </ScrollableArea>
         </div>  
