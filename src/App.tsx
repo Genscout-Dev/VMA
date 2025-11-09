@@ -24,6 +24,18 @@ export interface AppState {
   showSidebar: boolean
   sidebarSection1Expanded: boolean
   sidebarSection2Visible: boolean
+  arztbriefData?: {
+    recipient?: string
+    patientName?: string
+    patientBirthDate?: string
+    patientId?: string
+    admissionDate?: string
+    dischargeDate?: string
+    diagnoses?: string[]
+    procedures?: string[]
+    anamnese?: string
+    medication?: string[]
+  }
 }
 
 function App() {

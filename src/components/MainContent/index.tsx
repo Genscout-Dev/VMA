@@ -81,7 +81,7 @@ const MainContent: React.FC<MainContentProps> = ({ appState, updateAppState }) =
       </div>
 
       {/* Chatbot Button */}
-      <ChatbotButton />
+      <ChatbotButton updateAppState={updateAppState} />
     </div>
   )
 }
