@@ -10,6 +10,7 @@ interface Message {
   isFile?: boolean
   fileName?: string
   isSignierungButton?: boolean
+  isViewFileButton?: boolean
   data?: {
     recipient?: string
     patientName?: string
@@ -370,14 +371,14 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
         }])
       }, 3000)
       
+      // Show View File button
       setTimeout(() => {
         setMessages(prev => [...prev, {
           id: `bot-${Date.now()}-4`,
-          text: isEnglish ? 'Patient_Report_3_Months.pdf' : 'Patientenbericht_3_Monate.pdf',
+          text: isEnglish ? 'View File' : 'Datei anzeigen',
           isUser: false,
           timestamp: Date.now(),
-          isFile: true,
-          fileName: isEnglish ? 'Patient_Report_3_Months.pdf' : 'Patientenbericht_3_Monate.pdf'
+          isViewFileButton: true
         }])
       }, 4000)
       
@@ -486,7 +487,7 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
             {messages.map((msg) => (
               <div 
                 key={msg.id}
-                className={`chatbot-message ${msg.isUser ? 'user' : 'bot'} ${msg.isFile ? 'file-message' : ''} ${msg.isSignierungButton ? 'signierung-message' : ''}`}
+                className={`chatbot-message ${msg.isUser ? 'user' : 'bot'} ${msg.isFile ? 'file-message' : ''} ${msg.isSignierungButton || msg.isViewFileButton ? 'signierung-message' : ''}`}
                 role={msg.isUser ? 'user' : 'assistant'}
               >
                 {msg.isSignierungButton ? (
@@ -496,6 +497,14 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
                     type="button"
                   >
                     ✍️ {msg.text}
+                  </button>
+                ) : msg.isViewFileButton ? (
+                  <button 
+                    className="signierung-btn" 
+                    onClick={() => {}}
+                    type="button"
+                  >
+                    📁 {msg.text}
                   </button>
                 ) : msg.isFile ? (
                   <div className="file-download">
