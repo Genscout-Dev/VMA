@@ -130,7 +130,10 @@ export default function Toolbar({ updateAppState }: ToolbarProps) {
                         fontSize: '12px'
                       }}
                       onClick={() => {
-                        updateAppState({ currentPage: 'patientendatenmanagement' })
+                        updateAppState({ 
+                          currentPage: 'arztbriefSelection',
+                          arztbriefData: undefined
+                        })
                         setShowDocumentsDropdown(false)
                         setShowMedDokuDropdown(false)
                       }}

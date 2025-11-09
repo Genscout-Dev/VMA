@@ -20,13 +20,14 @@
   right: 24px;
   width: 380px;
   height: 500px;
+  max-height: calc(100vh - 120px);
   background: white;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   z-index: 999;
-  overflow: hidden;
+  overflow: visible;
   animation: slideUp 0.3s ease;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
 }
@@ -50,6 +51,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 12px 12px 0 0;
+  flex-shrink: 0;
 }
 
 .chatbot-header h3 {
@@ -131,6 +134,7 @@
   flex-direction: column;
   gap: 12px;
   background: #f5f5f5;
+  min-height: 0;
 }
 
 .chatbot-message {
@@ -168,7 +172,9 @@
   padding: 16px;
   background: white;
   border-top: 1px solid #e0e0e0;
+  border-radius: 0 0 12px 12px;
   gap: 8px;
+  flex-shrink: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
 }
 
@@ -327,14 +333,15 @@
 
 /* File Message Styles */
 .chatbot-message.file-message {
-  background: white;
+  background: white !important;
   border: 2px solid var(--green-light);
-  padding: 0;
+  padding: 0 !important;
   max-width: 90%;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   transition: all 0.2s ease;
   border-radius: 12px;
   overflow: hidden;
+  color: #2c3e50 !important;
 }
 
 .chatbot-message.file-message:hover {
@@ -348,6 +355,8 @@
   align-items: center;
   gap: 12px;
   padding: 14px 16px;
+  width: 100%;
+  background: white;
 }
 
 .file-download svg {
@@ -356,6 +365,8 @@
   transition: transform 0.2s ease;
   width: 28px;
   height: 28px;
+  min-width: 28px;
+  min-height: 28px;
 }
 
 .chatbot-message.file-message:hover .file-download svg {
@@ -417,3 +428,58 @@
   outline: none !important;
   box-shadow: 0 2px 6px rgba(75, 140, 109, 0.25), 0 0 0 3px rgba(75, 140, 109, 0.2) !important;
 }
+
+/* Signierung Button Message Styles */
+.chatbot-message.signierung-message {
+  background: transparent;
+  padding: 0;
+  max-width: 100%;
+  align-self: center;
+}
+
+.signierung-btn {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-light) 100%) !important;
+  color: white !important;
+  border: none !important;
+  padding: 14px 32px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+  box-shadow: 0 4px 12px rgba(75, 140, 109, 0.3) !important;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-width: 180px !important;
+  height: auto !important;
+  line-height: 1.4 !important;
+}
+
+.signierung-btn:hover {
+  background: linear-gradient(135deg, var(--green-light) 0%, var(--green-dark) 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(75, 140, 109, 0.4) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.signierung-btn:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 3px 8px rgba(75, 140, 109, 0.25) !important;
+  background: linear-gradient(135deg, #3d7158 0%, var(--green-light) 100%) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.signierung-btn:focus {
+  outline: none !important;
+  box-shadow: 0 4px 12px rgba(75, 140, 109, 0.3), 0 0 0 3px rgba(75, 140, 109, 0.2) !important;
+}
+

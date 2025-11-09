@@ -94,6 +94,63 @@
   color: #000;
 }
 
+.info-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #000;
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s ease;
+}
+
+.info-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.info-btn:active {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.info-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 2px;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.info-checkbox:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.info-checkbox input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: #0066cc;
+  appearance: auto;
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+}
+
+.info-checkbox span {
+  user-select: none;
+}
+
 .header-status-bar {
   display: flex;
   padding: 4px 8px;
@@ -252,14 +309,23 @@
   gap: 6px;
 }
 
+.header-info-bar .checkbox-row {
+  margin-bottom: 0;
+}
+
 .checkbox-row input[type="checkbox"] {
   width: 13px;
   height: 13px;
+  cursor: pointer;
+  accent-color: #0066cc;
 }
 
 .checkbox-row label {
   font-size: 11px;
   color: #000;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
 }
 
 .diagnosis-options {
@@ -455,3 +521,195 @@
   border: 1px solid #e0e0e0;
 }
 
+/* Empty Field */
+.empty-field {
+  min-height: 30px;
+  background: #fff;
+  border: 1px solid #ccc;
+  margin-top: 4px;
+}
+
+/* Link Row */
+.link-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.toolbar-btn-link.red-icon {
+  color: #cc0000;
+}
+
+/* Two Column Section */
+.two-column-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.column-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.column-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Medication Section */
+.medication-section {
+  margin-top: 8px;
+  border: 1px solid #999;
+  background: #fff;
+}
+
+.medication-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  background: #f0f0f0;
+  border-bottom: 1px solid #999;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.medication-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.medication-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.medication-table thead {
+  background: #e0e0e0;
+}
+
+.medication-table th {
+  padding: 6px 8px;
+  text-align: left;
+  border: 1px solid #999;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.medication-table td {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+}
+
+.table-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 11px;
+  padding: 4px;
+  font-style: italic;
+  color: #666;
+}
+
+.table-input:focus {
+  outline: 1px solid #0066cc;
+  background: #fff;
+}
+
+.medication-note {
+  padding: 8px;
+  background: #fafafa;
+}
+
+.note-label {
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.note-input {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #999;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+/* Dosage Table */
+.dosage-table-container {
+  margin-top: 8px;
+  border: 1px solid #999;
+  background: #fff;
+}
+
+.dosage-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.dosage-table thead {
+  background: #e0e0e0;
+}
+
+.dosage-table th {
+  padding: 6px 8px;
+  text-align: left;
+  border: 1px solid #999;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.dosage-table td {
+  padding: 12px 8px;
+  border: 1px solid #ccc;
+  min-height: 40px;
+}
+
+/* Signature Space */
+.signature-space {
+  min-height: 80px;
+  margin-top: 20px;
+  border-bottom: 1px solid #999;
+  width: 60%;
+}
+
+/* Signierung Inputs */
+.signierung-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.signierung-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #999;
+  font-size: 11px;
+  background: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.signierung-input:focus {
+  outline: 1px solid #0066cc;
+  background: #fffef0;
+}
+
+.signierung-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .two-column-section {
+    grid-template-columns: 1fr;
+  }
+}

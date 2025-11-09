@@ -7,8 +7,6 @@ interface PatientFileProps {
 }
 
 const PatientFile: React.FC<PatientFileProps> = ({ appState }) => {
-  const patient = appState.selectedPatient
-
   // If arztbriefData is available, show the Arztbrief instead
   if (appState.arztbriefData) {
     return <Arztbrief data={appState.arztbriefData} />

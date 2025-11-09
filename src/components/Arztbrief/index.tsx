@@ -35,10 +35,21 @@ const Arztbrief: React.FC<ArztbriefProps> = ({ data }) => {
         </div>
         <div className="header-info-bar">
           <div className="info-left">
-            <span className="info-item">⬜ Drucken</span>
-            <span className="info-item">🖨️ ☐ Druckvorlage ausblenden ☑ in Druckliste ☐ drucken</span>
-            <span className="info-item">📧 zum Sekretariat</span>
-            <span className="info-item">✍️ zur Signierung</span>
+            <button className="info-btn">🖨️ Drucken</button>
+            <div className="checkbox-row">
+              <input type="checkbox" id="druckvorlage" />
+              <label htmlFor="druckvorlage">Druckvorlage ausblenden</label>
+            </div>
+            <div className="checkbox-row">
+              <input type="checkbox" id="in-druckliste" defaultChecked />
+              <label htmlFor="in-druckliste">in Druckliste</label>
+            </div>
+            <div className="checkbox-row">
+              <input type="checkbox" id="drucken" />
+              <label htmlFor="drucken">drucken</label>
+            </div>
+            <button className="info-btn">📧 zum Sekretariat</button>
+            <button className="info-btn">✍️ zur Signierung</button>
           </div>
         </div>
         <div className="header-status-bar">
@@ -234,6 +245,167 @@ const Arztbrief: React.FC<ArztbriefProps> = ({ data }) => {
         {/* Medication */}
         <div className="content-section">
           <div className="section-label">Medikation bei Aufnahme:</div>
+        </div>
+
+        {/* Lab Values Section */}
+        <div className="content-section">
+          <div className="section-label">Laborwerte:</div>
+          <div className="empty-field"></div>
+        </div>
+
+        {/* Assessment Section */}
+        <div className="content-section">
+          <div className="section-label">Assessment/s:</div>
+          <div className="link-row">
+            <button className="toolbar-btn-link">⚙️ auswählen</button>
+            <button className="toolbar-btn-link red-icon">🗑️ Datum/Zeit ausblenden</button>
+          </div>
+        </div>
+
+        {/* Two Column Layout Section */}
+        <div className="two-column-section">
+          {/* Left Column */}
+          <div className="column-left">
+            {/* Therapy and Course */}
+            <div className="content-section">
+              <div className="section-label">Therapie und Verlauf:</div>
+              <div className="link-row">
+                <button className="toolbar-btn-link">⚙️ Einklkate_auswählen</button>
+                <button className="toolbar-btn-link red-icon">🗑️ Abschlußbefund_auswählen</button>
+              </div>
+            </div>
+
+            {/* Epicrisis */}
+            <div className="content-section">
+              <div className="section-label">Epikrise:</div>
+              <div className="link-row">
+                <button className="toolbar-btn-link">⚙️ Verläufe_auswählen</button>
+                <button className="toolbar-btn-link red-icon">🗑️ Abschlußbefund_auswählen</button>
+              </div>
+            </div>
+
+            {/* Last Medication */}
+            <div className="content-section">
+              <div className="section-label">Letzte Medikation:</div>
+              <div className="link-row">
+                <button className="toolbar-btn-link">Alten Medikatoriebaustien (trotz OPMS) anzeigen</button>
+              </div>
+              <div className="medication-section">
+                <div className="medication-header">
+                  <span>Letzte Medikation:</span>
+                  <div className="medication-icons">
+                    <button className="icon-btn">💾</button>
+                    <button className="icon-btn">📄</button>
+                    <button className="icon-btn">✂️</button>
+                    <button className="icon-btn">🗑️</button>
+                  </div>
+                </div>
+                <table className="medication-table">
+                  <thead>
+                    <tr>
+                      <th>Medikament</th>
+                      <th>Weg</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input 
+                          type="text" 
+                          className="table-input" 
+                          placeholder="Geben Sie bitte eine neue Anordnung ein" 
+                        />
+                      </td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div className="medication-note">
+                  <div className="note-label">Keine Medikation erfasst</div>
+                  <div className="note-label">Bemerkung:</div>
+                  <input type="text" className="note-input" />
+                </div>
+              </div>
+            </div>
+
+            {/* Access and Drainages */}
+            <div className="content-section">
+              <div className="section-label">Zugänge und Drainagen:</div>
+              <div className="link-row">
+                <button className="toolbar-btn-link">⚙️ Übernehmen / Aktualisieren</button>
+                <button className="toolbar-btn-link red-icon">🗑️ Löschen</button>
+              </div>
+            </div>
+
+            {/* Regulations */}
+            <div className="content-section">
+              <div className="section-label">Verordnungen:</div>
+              <div className="link-row">
+                <button className="toolbar-btn-link">⚙️ Neu laden</button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column */}
+          <div className="column-right">
+            {/* Empty space to align with left sections */}
+            <div className="content-section" style={{ minHeight: '120px' }}></div>
+            <div className="content-section" style={{ minHeight: '120px' }}></div>
+
+            {/* Dosage Table aligned with Medication */}
+            <div className="content-section">
+              <div className="dosage-table-container">
+                <table className="dosage-table">
+                  <thead>
+                    <tr>
+                      <th colSpan={2} style={{ textAlign: 'center' }}>Vorabreichung</th>
+                    </tr>
+                    <tr>
+                      <th>erste</th>
+                      <th>letzte</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Action buttons aligned at bottom */}
+            <div className="content-section">
+              <div className="link-row">
+                <button className="icon-btn">⚙️</button>
+                <button className="icon-btn">🗑️</button>
+                <button className="toolbar-btn-link red-icon">🗑️ Markierte Zeile löschen</button>
+              </div>
+            </div>
+
+            {/* Signierung Section with 3 vertical input fields */}
+            <div className="content-section">
+              <div className="section-label">Signierung:</div>
+              <div className="signierung-inputs">
+                <input type="text" className="signierung-input" placeholder="A. Hosny" />
+                <input type="text" className="signierung-input" placeholder="Assistenzarzt" />
+                <input type="text" className="signierung-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Procedures Section */}
+        <div className="content-section">
+          <div className="section-label">Prozedere:</div>
+          <div className="empty-field"></div>
+        </div>
+
+        {/* Final Greeting */}
+        <div className="content-section">
+          <div className="greeting-text">Mit freundlichen kollegialen Grüßen</div>
+          <div className="signature-space"></div>
         </div>
       </div>
     </div>

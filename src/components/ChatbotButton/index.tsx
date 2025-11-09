@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './index.css'
 import { AppState } from '../../App'
 
@@ -9,6 +9,7 @@ interface Message {
   timestamp: number
   isFile?: boolean
   fileName?: string
+  isSignierungButton?: boolean
   data?: {
     recipient?: string
     patientName?: string
@@ -39,7 +40,24 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
   ])
   const [inputValue, setInputValue] = useState('')
   const [waitingForRecipient, setWaitingForRecipient] = useState(false)
+  const [waitingForArztbriefSelection, setWaitingForArztbriefSelection] = useState(false)
+  const [waitingForPatientName, setWaitingForPatientName] = useState(false)
+  const [selectedPatientName, setSelectedPatientName] = useState('')
   const [currentLanguage, setCurrentLanguage] = useState<'en' | 'de'>('de')
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+  
+  // Arztbrief types
+  const arztbriefTypes = [
+    'Arztbrief ATLO BWAA',
+    'Arztbrief BWAA',
+    'Arztbrief für Anschreiben BWAA',
+    'Arztbrief ZNA BWAA'
+  ]
+
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
 
   // Keyboard navigation: Escape to close
   useEffect(() => {
@@ -115,6 +133,110 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
     const detectedLang = detectLanguage(inputValue)
     setCurrentLanguage(detectedLang)
     
+    // Check if we're waiting for patient name (for Arztbrief)
+    if (waitingForPatientName) {
+      setWaitingForPatientName(false)
+      
+      const patientName = inputValue.trim()
+      setSelectedPatientName(patientName)
+      const isEnglish = currentLanguage === 'en'
+      
+      // Now show Arztbrief type selection
+      setTimeout(() => {
+        const arztbriefList = arztbriefTypes
+          .map((type, index) => `${index + 1}. ${type}`)
+          .join('\n')
+        
+        setMessages(prev => [...prev, {
+          id: `bot-${Date.now()}`,
+          text: isEnglish
+            ? `✅ Patient: ${patientName}\n\n📋 Available Arztbrief types:\n\n${arztbriefList}\n\n❓ Please enter the number of your selection (1-${arztbriefTypes.length}):`
+            : `✅ Patient: ${patientName}\n\n📋 Verfügbare Arztbrief-Auswahl:\n\n${arztbriefList}\n\n❓ Bitte geben Sie die Nummer Ihrer Auswahl ein (1-${arztbriefTypes.length}):`,
+          isUser: false,
+          timestamp: Date.now()
+        }])
+      }, 500)
+      
+      setWaitingForArztbriefSelection(true)
+      setInputValue('')
+      return
+    }
+    
+    // Check if we're waiting for Arztbrief selection
+    if (waitingForArztbriefSelection) {
+      setWaitingForArztbriefSelection(false)
+      
+      const selectionNumber = parseInt(userInput)
+      const isEnglish = currentLanguage === 'en'
+      
+      // Validate selection
+      if (isNaN(selectionNumber) || selectionNumber < 1 || selectionNumber > arztbriefTypes.length) {
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            id: `bot-${Date.now()}`,
+            text: isEnglish
+              ? `❌ Invalid selection. Please enter a number between 1 and ${arztbriefTypes.length}.`
+              : `❌ Ungültige Auswahl. Bitte geben Sie eine Zahl zwischen 1 und ${arztbriefTypes.length} ein.`,
+            isUser: false,
+            timestamp: Date.now()
+          }])
+        }, 500)
+        setWaitingForArztbriefSelection(true)
+        setInputValue('')
+        return
+      }
+      
+      const selectedType = arztbriefTypes[selectionNumber - 1]
+      
+      // Show confirmation and open Arztbrief
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          id: `bot-${Date.now()}-1`,
+          text: isEnglish
+            ? `✅ Creating "${selectedType}" for patient ${selectedPatientName}...`
+            : `✅ Erstelle "${selectedType}" für Patient ${selectedPatientName}...`,
+          isUser: false,
+          timestamp: Date.now()
+        }])
+      }, 500)
+      
+      // Create mock data for the selected Arztbrief with selected patient name
+      const arztbriefData = {
+        recipient: 'Dr. Dirk Alten',
+        patientName: selectedPatientName,
+        patientBirthDate: '15.03.1985',
+        patientId: 'P-2024-001',
+        admissionDate: '05.10.2025',
+        dischargeDate: '14.10.2025',
+        diagnoses: [
+          'Leberabszess (K75.0)',
+          'Z.n EBV-Infektion'
+        ],
+        procedures: [
+          'Laparoskopische Leberabszess Inzision und Drainage Anlage',
+          'Computertomographie des Thorax mit Kontrastmittel',
+          'Computertomographie des Abdomens mit Kontrastmittel'
+        ],
+        anamnese: 'Die Patientin wurde vom zu Hause wegen Allgemeinzustandsverschlechterung und Appetitlosigkeit im Rahmen EBV-Infektion (seit 23.09.2025) gebracht. beim Eintreffen im ZNA: Patientin wach, klar und orientiert, hat Hypotonie bis 86 mmHg systolisch bei Oligurie durch wenig Flüssigkeit zuvor bei Appetitlosigkeit sowie weitere Einnahme von Candesartan und Hydroton.',
+        medication: []
+      }
+      
+      // Add Signierung button
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          id: `bot-${Date.now()}-2`,
+          text: isEnglish ? 'Signature' : 'Signierung',
+          isUser: false,
+          timestamp: Date.now(),
+          isSignierungButton: true,
+          data: arztbriefData
+        }])
+      }, 1500)
+      
+      setInputValue('')
+      return
+    }
+    
     // Check if we're waiting for recipient name
     if (waitingForRecipient) {
       setWaitingForRecipient(false)
@@ -136,8 +258,8 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
       
       setTimeout(() => {
         const report = isEnglish 
-          ? `✅ Discharge summary successfully created!\n\n📋 Report Details:\n━━━━━━━━━━━━━━━━━━\n👤 Recipient: ${recipientName}\n👨‍⚕️ Patient: John Doe\n🆔 ID: P-2024-001\n\n📊 Diagnoses:\n• Acute Bronchitis (J20.9)\n• Arterial Hypertension (I10)\n\n🏥 Procedures Performed:\n• Blood examination\n• Chest X-ray\n• ECG\n• Medication therapy\n\n📝 Medical History:\n• Known hypertension since 2020\n• No allergies\n• Non-smoker\n\n🔬 Examinations:\n• Lab: Slight inflammation markers\n• X-ray: No abnormalities\n• Vital parameters: Stable\n\n💊 Medication at Discharge:\n• Ramipril 5mg 1-0-0\n• Acetylcysteine 600mg 1-0-1\n\n━━━━━━━━━━━━━━━━━━\n\n✅ File saved!\n⚠️ Waiting for signature confirmation...`
-          : `✅ Entlassungsbericht erfolgreich erstellt!\n\n📋 Bericht-Details:\n━━━━━━━━━━━━━━━━━━\n👤 Empfänger: ${recipientName}\n👨‍⚕️ Patient: John Doe\n🆔 ID: P-2024-001\n\n📊 Diagnosen:\n• Akute Bronchitis (J20.9)\n• Arterielle Hypertonie (I10)\n\n🏥 Durchgeführte Maßnahmen:\n• Blutuntersuchung\n• Röntgen Thorax\n• EKG\n• Medikamentöse Therapie\n\n📝 Anamnese:\n• Bekannte Hypertonie seit 2020\n• Keine Allergien\n• Nichtraucher\n\n🔬 Untersuchungen:\n• Labor: Leichte Entzündungszeichen\n• Röntgen: Keine Auffälligkeiten\n• Vitalparameter: Stabil\n\n💊 Medikation bei Entlassung:\n• Ramipril 5mg 1-0-0\n• Acetylcystein 600mg 1-0-1\n\n━━━━━━━━━━━━━━━━━━\n\n✅ Datei gespeichert!\n⚠️ Warte auf Unterschrift-Bestätigung...`
+          ? `✅ Discharge summary successfully created!\n\n📋 Report Details:\n━━━━━━━━━━━━━━━━━━\n👤 Recipient: ${recipientName}\n👨‍⚕️ Patient: John Doe\n🆔 ID: P-2024-001\n\n📊 Diagnoses:\n• Acute Bronchitis (J20.9)\n• Arterial Hypertension (I10)\n\n🏥 Procedures Performed:\n• Blood examination\n• Chest X-ray\n• ECG\n• Medication therapy\n\n📝 Medical History:\n• Known hypertension since 2020\n• No allergies\n• Non-smoker\n\n🔬 Examinations:\n• Lab: Slight inflammation markers\n• X-ray: No abnormalities\n• Vital parameters: Stable\n\n💊 Medication at Discharge:\n• Ramipril 5mg 1-0-0\n• Acetylcysteine 600mg 1-0-1\n\n━━━━━━━━━━━━━━━━━━`
+          : `✅ Entlassungsbericht erfolgreich erstellt!\n\n📋 Bericht-Details:\n━━━━━━━━━━━━━━━━━━\n👤 Empfänger: ${recipientName}\n👨‍⚕️ Patient: John Doe\n🆔 ID: P-2024-001\n\n📊 Diagnosen:\n• Akute Bronchitis (J20.9)\n• Arterielle Hypertonie (I10)\n\n🏥 Durchgeführte Maßnahmen:\n• Blutuntersuchung\n• Röntgen Thorax\n• EKG\n• Medikamentöse Therapie\n\n📝 Anamnese:\n• Bekannte Hypertonie seit 2020\n• Keine Allergien\n• Nichtraucher\n\n🔬 Untersuchungen:\n• Labor: Leichte Entzündungszeichen\n• Röntgen: Keine Auffälligkeiten\n• Vitalparameter: Stabil\n\n💊 Medikation bei Entlassung:\n• Ramipril 5mg 1-0-0\n• Acetylcystein 600mg 1-0-1\n\n━━━━━━━━━━━━━━━━━━`
         
         setMessages(prev => [...prev, {
           id: `bot-${Date.now()}-2`,
@@ -146,6 +268,18 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
           timestamp: Date.now()
         }])
       }, 2500)
+      
+      // Show completion message
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          id: `bot-${Date.now()}-2b`,
+          text: isEnglish 
+            ? '✅ File saved!\n⚠️ Waiting for signature confirmation...'
+            : '✅ Datei gespeichert!\n⚠️ Warte auf Unterschrift-Bestätigung...',
+          isUser: false,
+          timestamp: Date.now()
+        }])
+      }, 3000)
       
       // Create the data object to pass to Arztbrief
       const arztbriefData = {
@@ -174,14 +308,14 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
         ]
       }
       
+      // Show the Signierung button instead of file
       setTimeout(() => {
         setMessages(prev => [...prev, {
           id: `bot-${Date.now()}-3`,
-          text: isEnglish ? 'Discharge_Summary_John_Doe.pdf' : 'Entlassungsbericht_John_Doe.pdf',
+          text: isEnglish ? 'Signature' : 'Signierung',
           isUser: false,
           timestamp: Date.now(),
-          isFile: true,
-          fileName: isEnglish ? 'Discharge_Summary_John_Doe.pdf' : 'Entlassungsbericht_John_Doe.pdf',
+          isSignierungButton: true,
           data: arztbriefData
         }])
       }, 3500)
@@ -276,14 +410,34 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
       return
     }
     
+    // Check for Arztbrief request
+    if (userInput.includes('arztbrief')) {
+      const isEnglish = detectedLang === 'en'
+      
+      setTimeout(() => {
+        setMessages(prev => [...prev, {
+          id: `bot-${Date.now()}`,
+          text: isEnglish
+            ? '📋 I will create an Arztbrief.\n\n❓ Please enter the patient name:'
+            : '📋 Ich erstelle einen Arztbrief.\n\n❓ Bitte geben Sie den Patientennamen ein:',
+          isUser: false,
+          timestamp: Date.now()
+        }])
+      }, 500)
+      
+      setWaitingForPatientName(true)
+      setInputValue('')
+      return
+    }
+    
     // Default response
     setTimeout(() => {
       const isEnglish = detectedLang === 'en'
       const botMessage: Message = {
         id: `bot-${Date.now()}`,
         text: isEnglish
-          ? '👋 I can help you with:\n\n📊 "Give me the info of the last 3 months"\n📋 "Generate a discharge summary"\n\nHow can I assist you?'
-          : '👋 Ich kann Ihnen helfen mit:\n\n📊 "Zeige mir die Info der letzten 3 Monate"\n📋 "Erstelle einen Entlassungsbericht"\n\nWie kann ich Ihnen weiterhelfen?',
+          ? '👋 I can help you with:\n\n📊 "Give me the info of the last 3 months"\n📋 "Generate a discharge summary"\n📄 "Arztbrief"\n\nHow can I assist you?'
+          : '👋 Ich kann Ihnen helfen mit:\n\n📊 "Zeige mir die Info der letzten 3 Monate"\n📋 "Erstelle einen Entlassungsbericht"\n📄 "Arztbrief"\n\nWie kann ich Ihnen weiterhelfen?',
         isUser: false,
         timestamp: Date.now()
       }
@@ -332,10 +486,18 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
             {messages.map((msg) => (
               <div 
                 key={msg.id}
-                className={`chatbot-message ${msg.isUser ? 'user' : 'bot'} ${msg.isFile ? 'file-message' : ''}`}
+                className={`chatbot-message ${msg.isUser ? 'user' : 'bot'} ${msg.isFile ? 'file-message' : ''} ${msg.isSignierungButton ? 'signierung-message' : ''}`}
                 role={msg.isUser ? 'user' : 'assistant'}
               >
-                {msg.isFile ? (
+                {msg.isSignierungButton ? (
+                  <button 
+                    className="signierung-btn" 
+                    onClick={() => handleDownload('', msg.data)}
+                    type="button"
+                  >
+                    ✍️ {msg.text}
+                  </button>
+                ) : msg.isFile ? (
                   <div className="file-download">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -357,6 +519,7 @@ const ChatbotButton: React.FC<ChatbotButtonProps> = ({ updateAppState }) => {
                 )}
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
 
           <form className="chatbot-input-area" onSubmit={handleSendMessage}>
