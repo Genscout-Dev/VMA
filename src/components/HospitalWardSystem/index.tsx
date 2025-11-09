@@ -15,6 +15,11 @@ interface Patient {
   statusColor?: string;
   iconType?: 'droplet' | 'warning' | 'none';
   buttonNumber?: number;
+  birthDate?: string;
+  caseNumber?: string;
+  department?: string;
+  admissionDate?: string;
+  dischargeDate?: string;
 }
 
 interface HospitalWardSystemProps {
@@ -24,6 +29,9 @@ interface HospitalWardSystemProps {
 
 const HospitalWardSystem = ({ updateAppState }: HospitalWardSystemProps) => {
   const [activeTab, setActiveTab] = useState('Warteliste');
+  const [selectedPatientId, setSelectedPatientId] = useState<string | null>(null);
+  const [hoveredPatient, setHoveredPatient] = useState<Patient | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
   const leftPatients: Patient[] = [
     {
@@ -37,7 +45,12 @@ const HospitalWardSystem = ({ updateAppState }: HospitalWardSystemProps) => {
       bedStatus: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       alerts: ['24.10 Birsontal'],
       iconType: 'none',
-      buttonNumber: 0
+      buttonNumber: 0,
+      birthDate: '15.03.1935',
+      caseNumber: '28040B0123',
+      department: 'UCH BWAA / S4 BWAA',
+      admissionDate: '20.10.2025 08:30',
+      dischargeDate: '25.10.2025'
     },
     {
       id: '2',
@@ -172,67 +185,97 @@ const HospitalWardSystem = ({ updateAppState }: HospitalWardSystemProps) => {
     </div>
   );
 
-  const PatientCard = ({ patient }: { patient: Patient; isLeft?: boolean }) => (
-    <div 
-      className="flex items-start gap-2 border-b border-gray-300 py-2 px-2 hover:bg-gray-50 cursor-pointer"
-      onClick={() => {
-        // Extract just the name without age for the selected patient
-        const nameWithoutAge = patient.name.split(' (')[0];
-        updateAppState({
-          selectedPatient: {
-            id: patient.id,
-            name: nameWithoutAge
-          },
-          sidebarSection2Visible: true
-        })
-      }}
-    >
-      <User className={`w-4 h-4 mt-0.5 flex-shrink-0 ${patient.gender === 'male' ? 'text-blue-600' : 'text-pink-600'}`} />
-      <div className="flex-1 min-w-0">
-        {patient.status && patient.statusColor && (
-          <div className={`text-xs ${patient.statusColor} mb-0.5 bg-red-50 px-1 py-0.5`}>
-            {patient.status}
-          </div>
-        )}
-        {patient.status && !patient.statusColor && patient.alerts && (
-          <div className="text-xs text-red-600 mb-0.5">
-            {patient.status}
-          </div>
-        )}
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex-1 min-w-0">
-            <div className="text-xs font-medium">{patient.name}</div>
-            <div className="text-xs text-gray-700">{patient.ward}</div>
-            {patient.alerts && patient.alerts.length > 0 && (
-              <div className="text-xs text-red-600">{patient.alerts[0]}</div>
-            )}
-            <div className="mt-1">
-              <BedStatus status={patient.bedStatus} />
+  const PatientCard = ({ patient }: { patient: Patient; isLeft?: boolean }) => {
+    const handlePatientNameClick = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      const nameWithoutAge = patient.name.split(' (')[0];
+      setSelectedPatientId(patient.id);
+      updateAppState({
+        selectedPatient: {
+          id: patient.id,
+          name: nameWithoutAge,
+          age: patient.age,
+          gender: patient.gender,
+          ward: patient.ward,
+          birthDate: patient.birthDate,
+          caseNumber: patient.caseNumber,
+          department: patient.department,
+          admissionDate: patient.admissionDate,
+          dischargeDate: patient.dischargeDate
+        },
+        sidebarSection2Visible: true,
+        currentPage: 'patientFile'
+      })
+    };
+
+    const handlePatientNameMouseEnter = (e: React.MouseEvent, patient: Patient) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setTooltipPosition({ x: rect.right + 10, y: rect.top });
+      setHoveredPatient(patient);
+    };
+
+    const handlePatientNameMouseLeave = () => {
+      setHoveredPatient(null);
+    };
+
+    return (
+      <div className="flex items-start gap-2 border-b border-gray-300 py-2 px-2">
+        <User className={`w-4 h-4 mt-0.5 flex-shrink-0 ${patient.gender === 'male' ? 'text-blue-600' : 'text-pink-600'}`} />
+        <div className="flex-1 min-w-0">
+          {patient.status && patient.statusColor && (
+            <div className={`text-xs ${patient.statusColor} mb-0.5 bg-red-50 px-1 py-0.5`}>
+              {patient.status}
             </div>
-          </div>
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            {patient.iconType === 'droplet' && (
-              <Droplet className="w-3.5 h-3.5 text-blue-400 fill-blue-400" />
-            )}
-            {patient.iconType === 'warning' && (
-              <AlertTriangle className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
-            )}
-            {patient.iconType === 'none' && patient.buttonNumber === 2 && (
-              <div className="w-3.5 h-3.5 bg-red-500"></div>
-            )}
-            <span className="text-xs text-gray-600 whitespace-nowrap">A2/S2</span>
-            <div className="flex gap-0.5">
-              <button className="w-4 h-4 border border-gray-500 bg-white text-xs flex items-center justify-center text-red-600 font-semibold">
-                {(patient.buttonNumber ?? 0) > 0 ? patient.buttonNumber : ''}
-              </button>
-              <button className="w-4 h-4 border border-gray-500 bg-white"></button>
-              <button className="w-4 h-4 border border-gray-500 bg-white"></button>
+          )}
+          {patient.status && !patient.statusColor && patient.alerts && (
+            <div className="text-xs text-red-600 mb-0.5">
+              {patient.status}
+            </div>
+          )}
+          <div className="flex items-start justify-between gap-2">
+            <div className="flex-1 min-w-0">
+              <div 
+                className={`text-xs font-medium cursor-pointer hover:bg-gray-100 inline-block px-1 rounded ${
+                  selectedPatientId === patient.id ? 'bg-yellow-200' : ''
+                }`}
+                onClick={handlePatientNameClick}
+                onMouseEnter={(e) => handlePatientNameMouseEnter(e, patient)}
+                onMouseLeave={handlePatientNameMouseLeave}
+              >
+                {patient.name}
+              </div>
+              <div className="text-xs text-gray-700">{patient.ward}</div>
+              {patient.alerts && patient.alerts.length > 0 && (
+                <div className="text-xs text-red-600">{patient.alerts[0]}</div>
+              )}
+              <div className="mt-1">
+                <BedStatus status={patient.bedStatus} />
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 flex-shrink-0">
+              {patient.iconType === 'droplet' && (
+                <Droplet className="w-3.5 h-3.5 text-blue-400 fill-blue-400" />
+              )}
+              {patient.iconType === 'warning' && (
+                <AlertTriangle className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
+              )}
+              {patient.iconType === 'none' && patient.buttonNumber === 2 && (
+                <div className="w-3.5 h-3.5 bg-red-500"></div>
+              )}
+              <span className="text-xs text-gray-600 whitespace-nowrap">A2/S2</span>
+              <div className="flex gap-0.5">
+                <button className="w-4 h-4 border border-gray-500 bg-white text-xs flex items-center justify-center text-red-600 font-semibold">
+                  {(patient.buttonNumber ?? 0) > 0 ? patient.buttonNumber : ''}
+                </button>
+                <button className="w-4 h-4 border border-gray-500 bg-white"></button>
+                <button className="w-4 h-4 border border-gray-500 bg-white"></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="w-full h-full bg-gray-100 flex flex-col text-xs font-sans overflow-hidden">
@@ -503,6 +546,59 @@ const HospitalWardSystem = ({ updateAppState }: HospitalWardSystemProps) => {
         <button className="text-gray-600">Raum/Bett</button>
         <button className="text-gray-600">Patient</button>
       </div>
+
+      {/* Patient Info Tooltip */}
+      {hoveredPatient && (
+        <div 
+          className="fixed z-50 bg-yellow-50 border-2 border-gray-600 shadow-lg p-3 text-xs"
+          style={{ 
+            left: `${tooltipPosition.x}px`, 
+            top: `${tooltipPosition.y}px`,
+            minWidth: '300px'
+          }}
+        >
+          <div className="font-bold mb-2 text-sm">{hoveredPatient.name}</div>
+          <div className="space-y-1">
+            <div className="flex">
+              <span className="font-semibold w-24">Geb:</span>
+              <span>{hoveredPatient.birthDate || '30.11.1968'}</span>
+            </div>
+            <div className="flex">
+              <span className="font-semibold w-24">Fallnr:</span>
+              <span>{hoveredPatient.caseNumber || '28040B0222'}</span>
+            </div>
+            <div className="flex">
+              <span className="font-semibold w-24">Status:</span>
+              <span>stationär</span>
+            </div>
+            <div className="flex">
+              <span className="font-semibold w-24">FA/St.:</span>
+              <span>{hoveredPatient.department || 'ACH BWAA / S4 BWAA'}</span>
+            </div>
+            <div className="flex">
+              <span className="font-semibold w-24">Bett:</span>
+              <span>1</span>
+            </div>
+            <div className="flex">
+              <span className="font-semibold w-24">Aufn:</span>
+              <span>{hoveredPatient.admissionDate || '06.10.2025 07:10'}</span>
+            </div>
+            <div className="flex">
+              <span className="font-semibold w-24">Entl (vorauss.):</span>
+              <span>{hoveredPatient.dischargeDate || '09.10.2025'}</span>
+            </div>
+            <div className="flex">
+              <span className="font-semibold w-24">Eingriffe:</span>
+            </div>
+            <div className="pl-6 text-gray-700">
+              Bandscheibenoperation (U), LWS Dekompression ITN
+            </div>
+            <div className="flex mt-2">
+              <span className="font-semibold w-24">Wds...</span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

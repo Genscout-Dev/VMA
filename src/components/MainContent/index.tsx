@@ -3,6 +3,7 @@ import PatientForm from '../PatientForm'
 import HospitalWardSystem from '../HospitalWardSystem'
 import OrganizationalUnits from '../OrganizationalUnits'
 import ChatbotButton from '../ChatbotButton'
+import PatientFile from '../PatientFile'
 import { AppState } from '../../App'
 import './index.css'
 
@@ -58,7 +59,7 @@ const MainContent: React.FC<MainContentProps> = ({ appState, updateAppState }) =
       
       {/* Content Area */}
       <div className="content-area">
-        {appState.currentPage === 'organizationalUnits' && (
+        {appState.currentPage === 'organizationalUnits' && !appState.selectedStation && (
           <OrganizationalUnits 
             appState={appState} 
             updateAppState={updateAppState} 
@@ -73,6 +74,9 @@ const MainContent: React.FC<MainContentProps> = ({ appState, updateAppState }) =
         )}
         {appState.currentPage === 'patientInfo' && (
           <PatientInfoPage patient={appState.selectedPatient} />
+        )}
+        {appState.currentPage === 'patientFile' && (
+          <PatientFile appState={appState} />
         )}
       </div>
 

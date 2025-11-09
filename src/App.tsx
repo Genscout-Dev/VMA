@@ -3,7 +3,7 @@ import Sidebar from './components/Sidebar'
 import Toolbar from './components/Toolbar'
 import MainContent from './components/MainContent'
 
-export type PageType = 'organizationalUnits' | 'stationsansicht' | 'patientInfo' | 'patientendatenmanagement'
+export type PageType = 'organizationalUnits' | 'stationsansicht' | 'patientInfo' | 'patientendatenmanagement' | 'patientFile'
 
 export interface AppState {
   currentPage: PageType
@@ -11,6 +11,15 @@ export interface AppState {
   selectedPatient: {
     id: string
     name: string
+    age?: number
+    gender?: string
+    ward?: string
+    birthDate?: string
+    caseNumber?: string
+    status?: string
+    department?: string
+    admissionDate?: string
+    dischargeDate?: string
   } | null
   showSidebar: boolean
   sidebarSection1Expanded: boolean
