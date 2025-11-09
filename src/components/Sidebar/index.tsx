@@ -14,7 +14,6 @@ export default function Sidebar({ appState, updateAppState }: SidebarProps) {
   const [selectedOverviewBold, setSelectedOverviewBold] = useState<Record<string, boolean>>({})
   const [selectedOverviewNormal, setSelectedOverviewNormal] = useState<Record<string, boolean>>({})
   const [selectedFilesPatients, setSelectedFilesPatients] = useState<Record<string, boolean>>({})
-  const [selectedFilesOther, setSelectedFilesOther] = useState<Record<string, boolean>>({})
   const [selectedMedicalRecords, setSelectedMedicalRecords] = useState<Record<string, boolean>>({ 'Krankengeschichte': true })
 
   // Automatically select "Station" and "Stationsgrafik" when a station is selected from OrganizationalUnits
@@ -136,7 +135,14 @@ export default function Sidebar({ appState, updateAppState }: SidebarProps) {
             </div>
             <div 
               className={`sidebar-item ${selectedOverviewNormal['Arztbriefe Medizin'] ? 'selected' : ''}`}
-              onClick={() => handleClick('Arztbriefe Medizin', setSelectedOverviewNormal)}
+              onClick={() => {
+                handleClick('Arztbriefe Medizin', setSelectedOverviewNormal)
+                // Clear arztbriefData and go to selection page
+                updateAppState({ 
+                  currentPage: 'arztbriefSelection',
+                  arztbriefData: undefined
+                })
+              }}
             >
               Arztbriefe Medizin
             </div>
