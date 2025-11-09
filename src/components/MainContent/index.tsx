@@ -4,6 +4,7 @@ import HospitalWardSystem from '../HospitalWardSystem'
 import OrganizationalUnits from '../OrganizationalUnits'
 import ChatbotButton from '../ChatbotButton'
 import PatientFile from '../PatientFile'
+import ArztbriefSelection from '../Arztbrief/ArztbriefSelection'
 import { AppState } from '../../App'
 import './index.css'
 
@@ -77,6 +78,42 @@ const MainContent: React.FC<MainContentProps> = ({ appState, updateAppState }) =
         )}
         {appState.currentPage === 'patientFile' && (
           <PatientFile appState={appState} />
+        )}
+        {appState.currentPage === 'arztbriefSelection' && (
+          <ArztbriefSelection 
+            stationName={appState.selectedStation || undefined}
+            onSelectType={(type) => {
+              // When "Arztbrief BWAA" is selected, navigate to patient file with arztbrief
+              if (type === 'Arztbrief BWAA') {
+                // First set the patient and arztbrief data
+                updateAppState({
+                  selectedPatient: {
+                    id: 'P-2024-001',
+                    name: 'Doe, John',
+                    birthDate: '15.03.1985',
+                    caseNumber: '2600080909',
+                    status: 'Active',
+                    department: 'ACH',
+                    admissionDate: '05.10.2025',
+                    dischargeDate: '14.10.2025'
+                  },
+                  showSidebar: true,
+                  sidebarSection2Visible: true,
+                  arztbriefData: {
+                    patientName: 'John Doe',
+                    patientBirthDate: '15.03.1985',
+                    patientId: 'P-2024-001',
+                    admissionDate: '05.10.2025',
+                    dischargeDate: '14.10.2025'
+                  }
+                })
+                // Then navigate to patient file
+                setTimeout(() => {
+                  updateAppState({ currentPage: 'patientFile' })
+                }, 100)
+              }
+            }}
+          />
         )}
       </div>
 

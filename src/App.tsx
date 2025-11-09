@@ -3,7 +3,7 @@ import Sidebar from './components/Sidebar'
 import Toolbar from './components/Toolbar'
 import MainContent from './components/MainContent'
 
-export type PageType = 'organizationalUnits' | 'stationsansicht' | 'patientInfo' | 'patientendatenmanagement' | 'patientFile'
+export type PageType = 'organizationalUnits' | 'stationsansicht' | 'patientInfo' | 'patientendatenmanagement' | 'patientFile' | 'arztbriefSelection'
 
 export interface AppState {
   currentPage: PageType

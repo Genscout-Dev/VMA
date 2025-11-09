@@ -1,0 +1,144 @@
+/* Arztbrief Selection Container */
+.arztbrief-selection-container {
+  width: 100%;
+  height: 100%;
+  background: #d4d0c8;
+  display: flex;
+  flex-direction: column;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 11px;
+}
+
+/* Toolbar with Dropdown */
+.arztbrief-selection-toolbar {
+  background: var(--green-toolbar);
+  border-bottom: 2px solid #808080;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-label {
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: #000;
+  white-space: nowrap;
+}
+
+/* Station Info */
+.station-info {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background: #fff;
+  border: 1px solid #808080;
+  border-radius: 2px;
+}
+
+.station-label {
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: #666;
+}
+
+.station-name {
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 11px;
+  color: #000;
+  font-weight: bold;
+}
+
+.station-hint {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* Dropdown Styling */
+.arztbrief-dropdown {
+  min-width: 280px;
+  padding: 4px 8px;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 11px;
+  background: #fff;
+  border: 1px solid #808080;
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+  cursor: pointer;
+  outline: none;
+  color: #000;
+}
+
+.arztbrief-dropdown:hover {
+  background: #f0f0f0;
+}
+
+.arztbrief-dropdown:focus {
+  outline: 1px dotted #000;
+  outline-offset: -3px;
+}
+
+.arztbrief-dropdown option {
+  padding: 4px 8px;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 11px;
+  background: #fff;
+  color: #000;
+}
+
+.arztbrief-dropdown option:hover {
+  background: var(--green-light);
+  color: #fff;
+}
+
+/* Content Area */
+.arztbrief-selection-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid #808080;
+  border-top-color: #404040;
+  border-left-color: #404040;
+  margin: 8px;
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+}
+
+/* Placeholder */
+.selection-placeholder {
+  text-align: center;
+  padding: 40px;
+  max-width: 500px;
+}
+
+.placeholder-icon {
+  font-size: 72px;
+  margin-bottom: 24px;
+  opacity: 0.3;
+}
+
+.selection-placeholder h2 {
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 16px;
+}
+
+.selection-placeholder p {
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 11px;
+  color: #666;
+  line-height: 1.6;
+}
+
