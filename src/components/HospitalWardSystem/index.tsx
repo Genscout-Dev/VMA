@@ -189,23 +189,35 @@ const HospitalWardSystem = ({ updateAppState }: HospitalWardSystemProps) => {
     const handlePatientNameClick = (e: React.MouseEvent) => {
       e.stopPropagation();
       const nameWithoutAge = patient.name.split(' (')[0];
-      setSelectedPatientId(patient.id);
-      updateAppState({
-        selectedPatient: {
-          id: patient.id,
-          name: nameWithoutAge,
-          age: patient.age,
-          gender: patient.gender,
-          ward: patient.ward,
-          birthDate: patient.birthDate,
-          caseNumber: patient.caseNumber,
-          department: patient.department,
-          admissionDate: patient.admissionDate,
-          dischargeDate: patient.dischargeDate
-        },
-        sidebarSection2Visible: true,
-        currentPage: 'patientFile'
-      })
+      
+      // Toggle: if clicking the same patient again, deselect it
+      if (selectedPatientId === patient.id) {
+        setSelectedPatientId(null);
+        updateAppState({
+          selectedPatient: null,
+          sidebarSection2Visible: false,
+          currentPage: 'stationsansicht'
+        })
+      } else {
+        // Select the new patient
+        setSelectedPatientId(patient.id);
+        updateAppState({
+          selectedPatient: {
+            id: patient.id,
+            name: nameWithoutAge,
+            age: patient.age,
+            gender: patient.gender,
+            ward: patient.ward,
+            birthDate: patient.birthDate,
+            caseNumber: patient.caseNumber,
+            department: patient.department,
+            admissionDate: patient.admissionDate,
+            dischargeDate: patient.dischargeDate
+          },
+          sidebarSection2Visible: true,
+          currentPage: 'patientFile'
+        })
+      }
     };
 
     const handlePatientNameMouseEnter = (e: React.MouseEvent, patient: Patient) => {
